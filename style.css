@@ -1,0 +1,346 @@
+/* --- CSS Variables (Custom Properties) --- */
+:root {
+  /* Background Gradient Colors */
+  --bg-start: #c0eccc;
+  --bg-end: #a5c8e4;
+
+  /* Text/Branding Colors */
+  --color-dark-teal: #1a5e78;
+  --color-green: #499e4f;
+
+  /* Button Colors */
+  --button-base: #f7e8a9;
+  --button-hover: #f4d97d;
+  --button-text: #333;
+
+  /* Blackboard Text Colors */
+  --chalk-text: #f0f0f0;
+  --chalk-heading: #90ee90;
+}
+
+/* --- Basic Reset and Body Styles --- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  overflow: hidden;
+}
+
+/* ------------------------------------------- */
+/* --- GENERAL LAYOUT & COMPONENT STYLES --- */
+/* ------------------------------------------- */
+
+/* --- Start Screen Layout (Base Container) --- */
+.start-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+/* --- Content Styling (Used for index.html/start-menu.html) --- */
+.content-container {
+  text-align: left;
+  flex: 1;
+  padding-right: 40px;
+}
+
+.main-title {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+.main-title .code {
+  color: var(--color-dark-teal);
+}
+
+.main-title .grow {
+  color: var(--color-green);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--color-dark-teal);
+  font-weight: 500;
+  margin-bottom: 3rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- Button Styling --- */
+.start-button,
+.menu-button {
+  display: inline-block;
+  padding: 18px 40px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 40px;
+  transition: background-color 0.3s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+  background-color: var(--button-base);
+  color: var(--button-text);
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.start-button:hover,
+.menu-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Graphic Styling (Panda Image) --- */
+.graphic-container {
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.graphic-container img {
+  height: auto;
+  display: block;
+}
+
+/* --- MENU BUTTONS (Used for start-menu.html) --- */
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* Note: This applies to the main menu buttons, not the back button */
+.menu-button {
+  width: 250px;
+  padding: 18px 0;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ------------------------------------------- */
+/* --- CREDITS PAGE SPECIFIC STYLES (SINGLE COLUMN, CENTERED) --- */
+/* ------------------------------------------- */
+
+/* Override base start-screen to create a centered column */
+.credits-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+}
+
+/* Fix: Ensure the content block itself is centered */
+.credits-page .content-container {
+  flex: none;
+  padding-right: 0;
+  padding-left: 0;
+  align-items: center;
+  text-align: center; /* Keep centered for the blackboard box */
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* --- HEADER ROW (Button on Left, Title in Center) --- */
+.page-header-row {
+  /* Set as positioning context for the button */
+  position: relative;
+
+  /* Flexbox to contain the elements */
+  display: flex;
+  /* Centers the content that is NOT absolutely positioned (i.e., the title) */
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+/* Style for the main title on this page */
+.page-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--color-dark-teal);
+  text-align: center;
+}
+
+/* Back Button (using .menu-button class) */
+.credits-page .menu-button {
+  /* Positioning the button absolutely makes it independent of the title's centering */
+  position: absolute;
+  left: 0;
+
+  /* Resetting unwanted margins and widths for the small back button */
+  margin: 0;
+  width: auto;
+
+  /* Restore the smaller padding/font size for the back button */
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* --- BLACKBOARD STYLING (Used for credits content) --- */
+.blackboard {
+  background-color: #161616;
+  border: 1rem solid #c49b6d;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  padding: 2rem 3rem;
+  margin: 2rem auto;
+  line-height: 1.5;
+  text-align: left;
+  color: #fff;
+  width: 100%;
+}
+
+.blackboard h3 {
+  color: var(--color-green);
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.4);
+  padding-bottom: 5px;
+}
+
+.blackboard p {
+  font-size: 1.4rem;
+  color: #ccc;
+}
+
+/* ------------------------------------------- */
+/* --- SETTINGS PAGE SPECIFIC STYLES (Single Column, Centered) --- */
+/* ------------------------------------------- */
+
+/* Apply centering overrides for Settings page (no panda) */
+.settings-page .content-container {
+  text-align: center;
+  flex: none;
+  padding-right: 0;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Ensure title and button are centered */
+.settings-page .page-title,
+.settings-page .back-button {
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
+.settings-page .back-button {
+  margin-bottom: 50px;
+}
+
+/* Settings Controls Styling */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.setting-label {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--chalk-text);
+}
+
+.resolution-display {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--chalk-heading);
+  padding: 5px 10px;
+  border: 2px solid var(--chalk-heading);
+  border-radius: 5px;
+}
+
+/* --- Toggle Switch Styling (Custom UI) --- */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  margin-left: 1rem;
+  height: 34px;
+}
+
+/* ... (Toggle switch internal styles - unchanged) ... */
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--color-green);
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-green);
+}
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* --- Styling for the new Resolution Dropdown --- */
+.resolution-dropdown {
+  /* Use chalk colors for theme consistency */
+  background-color: #161616; /* Dark background */
+  color: var(--chalk-text); /* Light text */
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  /* Styling to match the 'blackboard' aesthetic */
+  padding: 8px 15px;
+  border: 2px solid var(--chalk-heading); /* Green chalk border */
+  border-radius: 5px;
+
+  /* Remove default system arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Add custom dropdown arrow (optional, but looks better) */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%2390ee90" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592c.859 0 1.319 1.013.753 1.658l-4.796 5.482a1 1 0 0 1-1.506 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px; /* Make space for the custom arrow */
+}
+
+.resolution-dropdown:focus {
+  outline: none;
+  border-color: white; /* Highlight focus */
+}
