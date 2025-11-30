@@ -1,0 +1,35 @@
+/* --- CSS Variables (Custom Properties) --- */
+:root {
+  /* Background Gradient Colors */
+  --bg-start: #c0eccc;
+  --bg-end: #a5c8e4;
+
+  /* Text/Branding Colors */
+  --color-dark-teal: #1a5e78;
+  --color-green: #499e4f;
+
+  /* Button Colors */
+  --button-base: #f7e8a9;
+  --button-hover: #f4d97d;
+  --button-text: #333;
+
+  /* Blackboard Text Colors */
+  --chalk-text: #f0f0f0;
+  --chalk-heading: #90ee90;
+
+  /* Island Bar Colors */
+  --bar-bg: rgba(196, 196, 196, 0.5);
+  --bar-text: #fff;
+  --bar-icon: #f7e8a9;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  overflow: hidden;
+}

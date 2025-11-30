@@ -3,15 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Code & Grow - Island</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Code & Grow</title>
+    <link rel="stylesheet" href="/stylesheets/body.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
-  <body class="room-img">
+
+  <body class="island-img">
     <div class="top-bar">
-      <div>
-        <a href="/start-menu.html" class="bar-button">Home</a>
-        <a href="/island.html" class="bar-button button2">Island</a>
-      </div>
+      <a href="/main-pages/start-menu.html" class="bar-button">Home</a>
 
       <div class="resource-container">
         <div class="resource-item">
@@ -28,21 +27,28 @@
         </div>
       </div>
 
-      <a href="/perfil.html" class="bar-button">Perfil</a>
+      <a href="/side-pages/perfil.html" class="bar-button">Perfil</a>
     </div>
 
     <div class="main-board">
+      <a href="/main-pages/house.html">
+        <img
+          src="/assets/house.png"
+          alt="Small House"
+          class="island-element house"
+        />
+      </a>
       <img
         src="/assets/panda.png"
         alt="Game Panda"
         class="island-element panda"
       />
-      <img src="/assets/bed.png" alt="Game Bed" class="island-element bed" />
-      <img
-        src="/assets/wardrobe.png"
-        alt="Game Wardrobe"
-        class="island-element wardrobe"
-      />
+      <a href="/main-pages/levels.html">
+        <img
+          src="/assets/bridge.png"
+          alt="Wooden Bridge"
+          class="island-element bridge"
+      /></a>
     </div>
   </body>
 </html>
