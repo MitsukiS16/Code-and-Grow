@@ -18,7 +18,7 @@
   --chalk-heading: #90ee90;
 
   /* Island Bar Colors */
-  --bar-bg: rgba(26, 94, 120, 0.8); /* Dark Teal with transparency */
+  --bar-bg: rgba(196, 196, 196, 0.5); /* Dark Teal with transparency */
   --bar-text: #fff;
   --bar-icon: #f7e8a9; /* Button base color for icons */
 }
@@ -90,6 +90,7 @@ body {
   /* Inherit general button feel but make it smaller for the bar */
   display: inline-block;
   padding: 8px 15px;
+  margin-left: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
