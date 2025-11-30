@@ -40,12 +40,21 @@ body {
 .island-img {
   background: url("/assets/island.png") no-repeat center center fixed;
   background-size: cover;
-  display: flex; /* Changed from 'block' to 'flex' to center the main-board */
+  display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  /* Keep the main content centered horizontally and vertically, 
-     but ensure the top bar remains at the top. */
+  justify-content: center;
+  align-items: center;
+}
+
+.room-img {
+  background: url("/assets/room.png") no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
   justify-content: center;
   align-items: center;
 }
@@ -84,6 +93,10 @@ body {
 .bar-button:hover {
   background-color: var(--button-hover);
   transform: translateY(-1px);
+}
+
+.bar-button button2 {
+  /* display: flex; */
 }
 
 .resource-container {
@@ -145,6 +158,18 @@ body {
   max-width: 35vw;
   bottom: 5vh;
   right: 0;
+}
+
+.bed {
+  max-width: 35vw;
+  bottom: 5vh;
+  left: 5vw;
+}
+
+.wardrobe {
+  max-width: 55vw;
+  bottom: 10vh;
+  right: 5vw;
 }
 
 /* ------------------------------------------- */
