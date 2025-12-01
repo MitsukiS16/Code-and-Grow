@@ -125,6 +125,21 @@
   font-size: 1.6rem;
 }
 
+.back-button {
+  background: none;
+  color: var(--color-dark-teal);
+  border: 2px solid var(--color-dark-teal);
+  padding: 8px 15px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.back-button:hover {
+  background-color: rgba(26, 94, 120, 0.1); 
+  transform: scale(1.05);
+}
+
 /* ===================================================================== */
 /* ===========================  TEXT STYLES  ============================ */
 /* ===================================================================== */
@@ -413,6 +428,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  padding: 15px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+
+  margin: 0;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
   margin-bottom: 25px;
 }
 
@@ -420,6 +444,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   color: var(--chalk-text);
+  margin-right: 15px;
 }
 
 .resolution-display {
@@ -438,20 +463,24 @@
   width: 60px;
   height: 34px;
 }
+
 .toggle-switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
   inset: 0;
   border-radius: 34px;
-  background-color: #ccc;
+  background-color: var(--color-dark-teal);
+  opacity: 0.5;
 
   cursor: pointer;
   transition: 0.4s;
 }
+
 .slider:before {
   content: "";
 
@@ -462,15 +491,18 @@
   left: 4px;
   bottom: 4px;
 
-  background-color: white;
+  background-color: var(--button-base);
   border-radius: 50%;
 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: 0.4s;
 }
 
 input:checked + .slider {
   background-color: var(--color-green);
+  opacity: 1;
 }
+
 input:checked + .slider:before {
   transform: translateX(26px);
 }
