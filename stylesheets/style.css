@@ -127,28 +127,50 @@
   letter-spacing: 0.5px;
 }
 
+/**********/
+/* BUttons */
 .start-button,
 .menu-button {
-  display: inline-block;
-  padding: 18px 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* space between icon and text if added */
+
+  padding: 1rem 1.5rem; /* responsive padding */
   font-size: 1.4rem;
   font-weight: bold;
   text-decoration: none;
-  border-radius: 40px;
-  transition: background-color 0.3s ease, transform 0.15s ease,
-    box-shadow 0.15s ease;
+  border-radius: 50px; /* more rounded pill shape */
+
   background-color: var(--button-base);
   color: var(--button-text);
   border: none;
+
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* Hover effect */
 .start-button:hover,
 .menu-button:hover {
   background-color: var(--button-hover);
-  transform: translateY(-2px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Icon inside button */
+.menu-button i,
+.start-button i {
+  font-size: 1.6rem; /* slightly bigger for visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/********************/
 
 .graphic-container {
   flex: 0 0 400px;

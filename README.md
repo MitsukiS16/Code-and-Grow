@@ -1,6 +1,6 @@
 # Code & Grow
 
-## Overview 
+## Overview
 
 Platform: Computer
 
@@ -12,7 +12,7 @@ Art Style: Minimalist 2D cartoon
 
 Title: Code & Grow
 
-## Concept 
+## Concept
 
 Concept: Code & Grow is a serious game that uses a combination of learning and playing to introduce players to Python programming. Players care for a baby panda, whose growth and happiness depend on them learning and applying coding concepts.
 
@@ -45,7 +45,6 @@ Feedback Loop: Immediate visual and sound feedback reinforce correct answers.
 Flow & Pacing: Short, distributed sessions promote sustainable learning habits.
 
 Progression: Difficulty scales gradually, integrating previously learned concepts.
-
 
 ### Aesthetics
 
