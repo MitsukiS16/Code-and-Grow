@@ -1,4 +1,3 @@
-
 /* --- ISLAND SCREEN STYLES --- */
 .island-img {
   background: url("/assets/island.png") no-repeat center center fixed;
@@ -32,7 +31,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 /* ------------------------------------------- */
 /* --- ISLAND MAIN BOARD STYLES --- */
@@ -195,7 +193,7 @@
   padding-right: 0;
   padding-left: 0;
   align-items: center;
-  text-align: center; 
+  text-align: center;
   max-width: 800px;
   width: 90%;
   margin: 0 auto;
@@ -421,4 +419,125 @@ input:checked + .slider:before {
   transition: width 0.5s ease-out;
   border-radius: 12px 0 0 12px;
   text-align: right;
+}
+
+/* LEVELS STYLING BOX */
+/**********************/
+
+/* Main container */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Remove underline on links */
+.flex-link {
+  text-decoration: none;
+}
+
+/* Base button style */
+.flex-child {
+  width: 15vw;
+  min-width: 200px;
+  height: 35vh;
+  min-height: 260px;
+  border-radius: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--button-base);
+  border: 0.3rem solid var(--button-border);
+  color: var(--button-text);
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+
+  transition: background-color 0.25s ease, transform 0.2s ease,
+    box-shadow 0.2s ease, opacity 0.25s ease;
+}
+
+/* Titles & subtitles */
+.flex-child h2 {
+  margin: 0;
+  color: var(--color-dark-teal);
+  font-size: 1.8rem;
+}
+
+.flex-child p {
+  margin: 0;
+  margin-top: 0.4rem;
+  color: var(--color-green);
+  font-size: 1.2rem;
+}
+
+/* Hover animation ONLY for unlocked levels */
+.flex-child:not(.locked):hover {
+  transform: scale(1.07);
+  background-color: var(--button-hover);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Locked levels */
+.locked {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
+}
+
+/**************************/
+/* MAP */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.map-node:nth-child(odd) {
+  align-self: flex-start;
+  margin-left: 5rem;
+}
+
+.map-node:nth-child(even) {
+  align-self: flex-end;
+  margin-right: 5rem;
+}
+
+.map-node {
+  width: 100px;
+  height: 100px;
+  border-radius: 15px;
+  background-color: var(--button-base);
+  border: 3px solid var(--button-border);
+  color: var(--color-dark-teal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.3s ease;
+}
+
+/* hover */
+.map-node:hover {
+  transform: scale(1.12);
+  background-color: var(--button-hover);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.map-node.locked {
+  opacity: 0.4;
+  pointer-events: none;
 }
