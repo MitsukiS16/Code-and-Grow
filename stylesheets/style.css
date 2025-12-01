@@ -1,51 +1,168 @@
-/* --- ISLAND SCREEN STYLES --- */
-.island-img {
-  background: url("/assets/island.png") no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-}
+/* ===================================================================== */
+/* ============================  BACKGROUNDS  =========================== */
+/* ===================================================================== */
 
-.room-img {
-  background: url("/assets/room.png") no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-}
-
+.island-img,
+.room-img,
 .water-img {
-  background: url("/assets/water.png") no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   height: 100vh;
   width: 100vw;
-  justify-content: center;
+}
+
+.island-img {
+  background-image: url("/assets/island.png");
+}
+.room-img {
+  background-image: url("/assets/room.png");
+}
+.water-img {
+  background-image: url("/assets/water.png");
+}
+
+/* ===================================================================== */
+/* =====================  MAIN MENU GENERAL LAYOUT  ==================== */
+/* ===================================================================== */
+
+.main-menu-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  width: 90%;
+  max-width: 1200px;
+  padding: 4rem 3rem;
+  margin: auto;
+
+  align-items: center;
+  padding-right: 0;
+}
+
+.main-menu-layout .main-title {
+  font-size: 5.2rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+.main-menu-layout .main-title:hover {
+  transform: translateY(-2px);
+}
+
+.main-menu-layout .content-container {
+  text-align: center;
+  padding-right: 0;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
   align-items: center;
 }
 
-/* ------------------------------------------- */
-/* --- ISLAND MAIN BOARD STYLES --- */
-/* ------------------------------------------- */
+/* --- Panda graphic --- */
+.graphic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.graphic-container img {
+  width: 90%;
+  max-width: 480px;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+}
+
+/* ===================================================================== */
+/* ============================== BUTTONS ============================== */
+/* ===================================================================== */
+
+.start-button,
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  width: 100%;
+  max-width: 300px;
+  padding: 1rem 1.5rem;
+
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+
+  border: none;
+  border-radius: 50px;
+
+  background-color: var(--button-base);
+  color: var(--button-text);
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.start-button:hover,
+.menu-button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.start-button i,
+.menu-button i {
+  font-size: 1.6rem;
+}
+
+/* ===================================================================== */
+/* ===========================  TEXT STYLES  ============================ */
+/* ===================================================================== */
+
+.main-title {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+.main-title .code {
+  color: var(--color-dark-teal);
+}
+.main-title .grow {
+  color: var(--color-green);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-dark-teal);
+  margin-bottom: 3rem;
+  letter-spacing: 0.5px;
+  align-items: center;
+}
+
+/* ===================================================================== */
+/* ============================  MAIN BOARD  ============================ */
+/* ===================================================================== */
+
 .main-board {
   position: relative;
   height: calc(100vh - 60px);
   width: 100%;
-  box-sizing: border-box;
 }
 
 .island-element {
   position: absolute;
-  max-height: 50vh;
-  width: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
   z-index: 5;
@@ -60,165 +177,185 @@
   bottom: 10vh;
   left: 0;
 }
-
 .panda {
   max-width: 15vw;
   bottom: 10vh;
   left: 45vw;
 }
-
 .bridge {
   max-width: 35vw;
   bottom: 5vh;
   right: 0;
 }
-
 .bed {
   max-width: 35vw;
   bottom: 5vh;
   left: 5vw;
 }
-
 .wardrobe {
   max-width: 55vw;
   bottom: 10vh;
   right: 5vw;
 }
 
-/* ------------------------------------------- */
-/* --- GENERAL LAYOUT & COMPONENT STYLES --- */
-/* ------------------------------------------- */
+/* ===================================================================== */
+/* ============================  LEVEL BOXES  =========================== */
+/* ===================================================================== */
 
-.start-screen {
+.flex-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 90%;
-  max-width: 1200px;
-  padding: 2rem;
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-.content-container {
-  text-align: left;
-  flex: 1;
-  padding-right: 40px;
-}
-
-.main-title {
-  font-size: 5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
-.main-title .code {
-  color: var(--color-dark-teal);
-}
-
-.main-title .grow {
-  color: var(--color-green);
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  color: var(--color-dark-teal);
-  font-weight: 500;
-  margin-bottom: 3rem;
-  letter-spacing: 0.5px;
-}
-
-/**********/
-/* BUttons */
-.start-button,
-.menu-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem; /* space between icon and text if added */
-
-  padding: 1rem 1.5rem; /* responsive padding */
-  font-size: 1.4rem;
-  font-weight: bold;
+.flex-link {
   text-decoration: none;
-  border-radius: 50px; /* more rounded pill shape */
+}
 
+.flex-child {
+  width: 15vw;
+  min-width: 200px;
+  height: 35vh;
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 40px;
   background-color: var(--button-base);
+  border: 0.3rem solid var(--button-border);
   color: var(--button-text);
-  border: none;
 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 
-  transition: background-color 0.3s ease, transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background-color 0.25s, transform 0.2s, opacity 0.25s,
+    box-shadow 0.2s;
 }
 
-/* Hover effect */
-.start-button:hover,
-.menu-button:hover {
+.flex-child h2 {
+  margin: 0;
+  color: var(--color-dark-teal);
+  font-size: 1.8rem;
+}
+.flex-child p {
+  margin-top: 0.4rem;
+  color: var(--color-green);
+  font-size: 1.2rem;
+}
+
+.flex-child:not(.locked):hover {
+  transform: scale(1.07);
   background-color: var(--button-hover);
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Icon inside button */
-.menu-button i,
-.start-button i {
-  font-size: 1.6rem; /* slightly bigger for visibility */
+.locked {
+  opacity: 0.45;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+/* ===================================================================== */
+/* ===============================  MAP  =============================== */
+/* ===================================================================== */
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.map-node {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 15px;
+  background-color: var(--button-base);
+  border: 3px solid var(--button-border);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  color: var(--color-dark-teal);
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s;
 }
 
-/********************/
-
-.graphic-container {
-  flex: 0 0 400px;
-  display: flex;
-  justify-content: flex-end;
+.map-node:hover {
+  transform: scale(1.12);
+  background-color: var(--button-hover);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-.graphic-container img {
-  height: auto;
-  display: block;
+.map-node.locked {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
-.menu-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 40px;
+.map-node:nth-child(odd) {
+  align-self: flex-start;
+  margin-left: 5rem;
+}
+.map-node:nth-child(even) {
+  align-self: flex-end;
+  margin-right: 5rem;
 }
 
-.menu-button {
-  width: 250px;
-  padding: 18px 0;
-  font-size: 22px;
-  font-weight: 600;
-  text-align: center;
-}
+/* ===================================================================== */
+/* ============================== BLACKBOARD ============================ */
+/* ===================================================================== */
 
-/* ------------------------------------------- */
-/* --- CREDITS PAGE SPECIFIC STYLES (SINGLE COLUMN, CENTERED) --- */
-/* ------------------------------------------- */
+.blackboard {
+  background-color: #161616;
+  border: 1rem solid #c49b6d;
+  border-radius: 0.5rem;
 
-.credits-page {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  max-width: 600px;
   width: 100%;
-  max-width: none;
+  margin: 2rem auto;
+  padding: 2rem 3rem;
+
+  color: #fff;
+  line-height: 1.5;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.credits-page .content-container {
+.blackboard h3 {
+  color: var(--color-green);
+  font-size: 1.8rem;
+
+  margin: 1rem 0 0.5rem;
+  padding-bottom: 5px;
+
+  border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.4);
+}
+.blackboard p {
+  color: #ccc;
+  font-size: 1.4rem;
+}
+
+/* ===================================================================== */
+/* ============================= PROFILE PAGE ========================== */
+/* ===================================================================== */
+
+.profile-page .content-container,
+.settings-page .content-container {
+  text-align: center;
   flex: none;
   padding-right: 0;
-  padding-left: 0;
-  align-items: center;
-  text-align: center;
+
   max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .page-header-row {
@@ -226,6 +363,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   margin-bottom: 2rem;
 }
@@ -234,72 +372,42 @@
   font-size: 3.5rem;
   font-weight: bold;
   color: var(--color-dark-teal);
-  text-align: center;
 }
 
-.credits-page .menu-button {
-  position: absolute;
-  left: 0;
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px 0;
 
-  margin: 0;
-  width: auto;
-
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  text-align: center;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
 }
 
-/* --- BLACKBOARD STYLING (Used for credits content) --- */
-.blackboard {
-  background-color: #161616;
-  border: 1rem solid #c49b6d;
-  border-radius: 0.5rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  max-width: 600px;
-  padding: 2rem 3rem;
-  margin: 2rem auto;
-  line-height: 1.5;
-  text-align: left;
-  color: #fff;
-  width: 100%;
+.stat-heading {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
-
-.blackboard h3 {
-  color: var(--color-green);
-  font-size: 1.8rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.4);
-  padding-bottom: 5px;
-}
-
-.blackboard p {
+.stat-value {
   font-size: 1.4rem;
-  color: #ccc;
 }
 
-/* ------------------------------------------- */
-/* --- SETTINGS PAGE SPECIFIC STYLES (SINGLE COLUMN, CENTERED) --- */
-/* ------------------------------------------- */
-
-.settings-page .content-container {
-  text-align: center;
-  flex: none;
-  padding-right: 0;
-  align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
+.progress-bar-container {
+  margin-top: 2rem;
+  height: 25px;
+  background-color: #333;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-green), #66bb66);
+  border-radius: 12px 0 0 12px;
+  transition: width 0.5s ease-out;
 }
 
-.settings-page .page-title,
-.settings-page .back-button {
-  align-self: center;
-  margin-bottom: 2rem;
-}
-
-.settings-page .back-button {
-  margin-bottom: 50px;
-}
+/* ===================================================================== */
+/* ============================ SETTINGS PAGE =========================== */
+/* ===================================================================== */
 
 .setting-row {
   display: flex;
@@ -317,8 +425,8 @@
 .resolution-display {
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--chalk-heading);
   padding: 5px 10px;
+
   border: 2px solid var(--chalk-heading);
   border-radius: 5px;
 }
@@ -326,11 +434,10 @@
 .toggle-switch {
   position: relative;
   display: inline-block;
+
   width: 60px;
-  margin-left: 1rem;
   height: 34px;
 }
-
 .toggle-switch input {
   opacity: 0;
   width: 0;
@@ -338,228 +445,66 @@
 }
 .slider {
   position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.4s;
+  inset: 0;
   border-radius: 34px;
+  background-color: #ccc;
+
+  cursor: pointer;
+  transition: 0.4s;
 }
 .slider:before {
-  position: absolute;
   content: "";
+
+  position: absolute;
   height: 26px;
   width: 26px;
+
   left: 4px;
   bottom: 4px;
+
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+
+  transition: 0.4s;
 }
+
 input:checked + .slider {
   background-color: var(--color-green);
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--color-green);
 }
 input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* ------------------------------------------- */
-/* --- PROFILE PAGE SPECIFIC STYLES (SINGLE COLUMN, CENTERED) --- */
-/* ------------------------------------------- */
+/* ===================================================================== */
+/* =========================== RESPONSIVE CSS =========================== */
+/* ===================================================================== */
 
-.profile-page .content-container {
-  text-align: center;
-  flex: none;
-  padding-right: 0;
-  align-items: center;
-  max-width: 800px;
-  margin: 0 auto;
+@media (max-width: 900px) {
+  .main-menu-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .main-menu-layout .menu-buttons {
+    align-items: center;
+  }
+
+  .graphic-container img {
+    max-width: 300px;
+  }
 }
 
-.profile-page .page-header-row {
-  max-width: 660px;
-  margin: 0 auto 2rem;
-}
+@media (max-width: 500px) {
+  .main-title {
+    font-size: 3.8rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+  }
 
-.profile-page .menu-button {
-  left: calc(50% - 330px);
-  transform: translateX(-50%);
-}
-
-.profile-stats {
-  max-width: 600px;
-  width: 100%;
-}
-
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 10px 0;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
-}
-
-.stat-row:last-of-type {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.stat-heading {
-  color: var(--chalk-heading);
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin: 0;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.stat-value {
-  font-size: 1.4rem;
-  color: var(--chalk-text);
-  font-weight: 500;
-  margin: 0;
-}
-
-.progress-bar-container {
-  margin-top: 2rem;
-  height: 25px;
-  background-color: #333;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--color-green), #66bb66);
-  transition: width 0.5s ease-out;
-  border-radius: 12px 0 0 12px;
-  text-align: right;
-}
-
-/* LEVELS STYLING BOX */
-/**********************/
-
-/* Main container */
-.flex-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-/* Remove underline on links */
-.flex-link {
-  text-decoration: none;
-}
-
-/* Base button style */
-.flex-child {
-  width: 15vw;
-  min-width: 200px;
-  height: 35vh;
-  min-height: 260px;
-  border-radius: 40px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background-color: var(--button-base);
-  border: 0.3rem solid var(--button-border);
-  color: var(--button-text);
-
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-
-  cursor: pointer;
-
-  transition: background-color 0.25s ease, transform 0.2s ease,
-    box-shadow 0.2s ease, opacity 0.25s ease;
-}
-
-/* Titles & subtitles */
-.flex-child h2 {
-  margin: 0;
-  color: var(--color-dark-teal);
-  font-size: 1.8rem;
-}
-
-.flex-child p {
-  margin: 0;
-  margin-top: 0.4rem;
-  color: var(--color-green);
-  font-size: 1.2rem;
-}
-
-/* Hover animation ONLY for unlocked levels */
-.flex-child:not(.locked):hover {
-  transform: scale(1.07);
-  background-color: var(--button-hover);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-}
-
-/* Locked levels */
-.locked {
-  opacity: 0.45;
-  cursor: default;
-  pointer-events: none;
-  transform: none;
-  box-shadow: none;
-}
-
-/**************************/
-/* MAP */
-.map-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  margin-top: 4rem;
-  position: relative;
-}
-
-.map-node:nth-child(odd) {
-  align-self: flex-start;
-  margin-left: 5rem;
-}
-
-.map-node:nth-child(even) {
-  align-self: flex-end;
-  margin-right: 5rem;
-}
-
-.map-node {
-  width: 100px;
-  height: 100px;
-  border-radius: 15px;
-  background-color: var(--button-base);
-  border: 3px solid var(--button-border);
-  color: var(--color-dark-teal);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease,
-    background-color 0.3s ease;
-}
-
-/* hover */
-.map-node:hover {
-  transform: scale(1.12);
-  background-color: var(--button-hover);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-.map-node.locked {
-  opacity: 0.4;
-  pointer-events: none;
+  .menu-button {
+    width: 200px;
+    font-size: 1.2rem;
+  }
 }

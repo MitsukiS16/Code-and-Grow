@@ -25,12 +25,14 @@
 
   /* Grey colors*/
   --grey-dark: #333;
-  --grey-light: #333;
+  --grey-light: #f0f0f0;
+
+  --font-primary: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-primary, Arial, sans-serif);
   height: 100vh;
   display: flex;
   justify-content: center;
