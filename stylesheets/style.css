@@ -196,27 +196,27 @@
 }
 
 .house {
-  max-width: 50vw;
+  max-width: 55vw;
   bottom: 10vh;
   left: 0;
 }
 .panda {
-  max-width: 15vw;
+  max-width: 20vw;
   bottom: 10vh;
   left: 45vw;
 }
 .bridge {
-  max-width: 35vw;
+  max-width: 30vw;
   bottom: 5vh;
   right: 0;
 }
 .bed {
-  max-width: 35vw;
+  max-width: 40vw;
   bottom: 5vh;
   left: 5vw;
 }
 .wardrobe {
-  max-width: 55vw;
+  max-width: 30vw;
   bottom: 10vh;
   right: 5vw;
 }
