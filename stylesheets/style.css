@@ -133,10 +133,11 @@
   border-radius: 50px;
   transition: all 0.2s ease;
   font-size: 1rem;
+  margin: 0;margin: 0;
 }
 
 .back-button:hover {
-  background-color: rgba(26, 94, 120, 0.1); 
+  background-color: rgba(26, 94, 120, 0.1);
   transform: scale(1.05);
 }
 
@@ -340,23 +341,38 @@
   padding: 2rem 3rem;
 
   color: #fff;
-  line-height: 1.5;
+  line-height: 1.6;
 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .blackboard h3 {
-  color: var(--color-green);
+  color: var(--chalk-heading);
   font-size: 1.8rem;
 
-  margin: 1rem 0 0.5rem;
+  margin: 2rem 0 0.8rem; /* Increased vertical spacing */
   padding-bottom: 5px;
 
   border-bottom: 0.2rem dashed rgba(255, 255, 255, 0.4);
 }
+
+.blackboard h3:first-of-type {
+  margin-top: 0;
+}
+
 .blackboard p {
   color: #ccc;
   font-size: 1.4rem;
+}
+
+.team-list {
+  margin-top: 1rem;
+}
+.team-list p {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--chalk-text);
+  font-weight: 500;
 }
 
 /* ===================================================================== */
@@ -387,6 +403,8 @@
   font-size: 3.5rem;
   font-weight: bold;
   color: var(--color-dark-teal);
+  margin: 0;
+  margin-left: 20px;
 }
 
 .stat-row {
