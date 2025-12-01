@@ -133,12 +133,19 @@
   border-radius: 50px;
   transition: all 0.2s ease;
   font-size: 1rem;
-  margin: 0;margin: 0;
+
+  margin: 0;
+  margin-right: 1rem;
+
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .back-button:hover {
   background-color: rgba(26, 94, 120, 0.1);
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-50%);
 }
 
 /* ===================================================================== */
@@ -337,6 +344,7 @@
 
   max-width: 600px;
   width: 100%;
+  min-width: 40vw;
   margin: 2rem auto;
   padding: 2rem 3rem;
 
@@ -344,6 +352,8 @@
   line-height: 1.6;
 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+  box-sizing: border-box;
 }
 
 .blackboard h3 {
@@ -403,8 +413,8 @@
   font-size: 3.5rem;
   font-weight: bold;
   color: var(--color-dark-teal);
+
   margin: 0;
-  margin-left: 20px;
 }
 
 .stat-row {
@@ -455,7 +465,6 @@
 
 .setting-row:last-child {
   border-bottom: none;
-  margin-bottom: 25px;
 }
 
 .setting-label {
@@ -528,6 +537,13 @@ input:checked + .slider:before {
 /* ===================================================================== */
 /* =========================== RESPONSIVE CSS =========================== */
 /* ===================================================================== */
+
+@media (max-width: 1200px) {
+  .blackboard {
+    min-width: 70vw;
+    max-width: 90vh;
+  }
+}
 
 @media (max-width: 900px) {
   .main-menu-layout {
