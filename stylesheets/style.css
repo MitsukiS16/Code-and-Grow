@@ -199,10 +199,12 @@
   max-width: 55vw;
   bottom: 10vh;
   left: 0;
+  z-index: 5;
 }
 
 .panda {
   height: auto;
+  z-index: 10;
 }
 
 .island-img .panda {
@@ -221,6 +223,7 @@
   max-width: 30vw;
   bottom: 5vh;
   right: 0;
+  z-index: 7;
 }
 
 .bed {
