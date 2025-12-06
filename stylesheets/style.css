@@ -202,14 +202,19 @@
 }
 
 .panda {
-  max-width: 20vh;
-  bottom: 10vh;
-  left: 45vw;
   height: auto;
 }
 
-.island-element .panda {
-  max-width: 40vh;
+.island-img .panda {
+  max-width: 20vh;
+  bottom: 10vh;
+  left: 45vw;
+}
+
+.room-img .panda {
+  max-width: 20vw;
+  bottom: 10vh;
+  left: 40vw;
 }
 
 .bridge {
@@ -608,11 +613,6 @@ input:checked + .slider:before {
   to {
     transform: scale(1);
   }
-}
-
-/* Optional: panda bobbing while sleeping */
-.panda.sleeping {
-  animation: bob 1s infinite alternate;
 }
 
 @keyframes bob {
