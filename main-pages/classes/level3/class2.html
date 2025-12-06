@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/body.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/top-bar.css" />
+    <link rel="stylesheet" href="/stylesheets/class.css" />
 
     <link
       rel="stylesheet"
@@ -20,7 +21,7 @@
         <a href="/main-pages/start-menu.html" class="bar-button">
           <i class="fa-solid fa-house"></i>
         </a>
-        <a href="/main-pages/levels.html" class="bar-button">
+        <a href="/main-pages/levels/level1.html" class="bar-button">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
       </div>
@@ -40,27 +41,20 @@
         </div>
       </div>
 
-      <a href="/side-pages/perfil.html" class="bar-button">
-        <i class="fa-solid fa-user"></i>
-      </a>
+      <a href="/side-pages/perfil.html" class="bar-button">Perfil</a>
+    </div>
+    <!-- <div class="blackboard profile-stats">
+      <h2>Question</h2>
+      <p>Answer</p>
+    </div> -->
+    <div class="blackboard" id="classContainer">
+      <div class="loading">Loading...</div>
     </div>
 
-    <div class="map-container">
-      <a href="/main-pages/classes/level3/class1.html" class="map-node"
-        >Class 1</a
-      >
-      <a href="/main-pages/classes/level3/class2.html" class="map-node locked"
-        >Class 2</a
-      >
-      <a href="/main-pages/classe/level3/class3.html" class="map-node locked"
-        >Class 3</a
-      >
-      <a href="/main-pages/classes/level3/class4.html" class="map-node locked"
-        >Class 4</a
-      >
-      <a href="/main-pages/classes/level3/class5.html" class="map-node locked"
-        >Class 5</a
-      >
-    </div>
+    <script>
+      const CURRENT_LEVEL = 3;
+      const CURRENT_CLASS = 2;
+    </script>
+    <script src="/scripts/class-loader.js"></script>
   </body>
 </html>

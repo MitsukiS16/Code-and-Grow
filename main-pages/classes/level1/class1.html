@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/stylesheets/body.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <link rel="stylesheet" href="/stylesheets/top-bar.css" />
+    <link rel="stylesheet" href="/stylesheets/class.css" />
 
     <link
       rel="stylesheet"
@@ -42,9 +43,18 @@
 
       <a href="/side-pages/perfil.html" class="bar-button">Perfil</a>
     </div>
-    <div class="blackboard profile-stats">
+    <!-- <div class="blackboard profile-stats">
       <h2>Question</h2>
       <p>Answer</p>
+    </div> -->
+    <div class="blackboard" id="classContainer">
+      <div class="loading">Loading...</div>
     </div>
+
+    <script>
+      const CURRENT_LEVEL = 1;
+      const CURRENT_CLASS = 1;
+    </script>
+    <script src="/scripts/class-loader.js"></script>
   </body>
 </html>

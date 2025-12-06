@@ -1,0 +1,136 @@
+{
+  "level1": {
+    "name": "Foundations",
+    "description": "Understand Python structure and essential commands",
+    "classes": {
+      "class1": {
+        "className": "Variables",
+        "questionType": "click_options",
+        "question": "What's wrong with this variable name: my name",
+        "options": [
+          "It contains a lowercase letter",
+          "There's a space between the words",
+          "It's too short",
+          "It uses English letters"
+        ],
+        "correctAnswer": "There's a space between the words",
+        "explanation": "Variable names in Python cannot contain spaces. Use underscores instead: my_name"
+      },
+      "class2": {
+        "className": "Print Function",
+        "questionType": "fill_blank",
+        "question": "Complete the code to print 'Hello World':",
+        "codeTemplate": "___('Hello World')",
+        "correctAnswer": "print",
+        "explanation": "The print() function is used to output text in Python."
+      },
+      "class3": {
+        "className": "Data Types",
+        "questionType": "click_options_multiple",
+        "question": "Select which data types exist in Python:",
+        "options": [
+          {"text": "str", "isCorrect": true},
+          {"text": "float", "isCorrect": true},
+          {"text": "integer", "isCorrect": false},
+          {"text": "set", "isCorrect": true},
+          {"text": "string", "isCorrect": false},
+          {"text": "boolean", "isCorrect": true}
+        ],
+        "explanation": "In Python, the correct type names are: str (not string), int (not integer), float, bool/boolean, set, list, dict, tuple."
+      }
+    }
+  },
+  "level2": {
+    "name": "Debugging",
+    "description": "Identify and correct logical or syntactic errors",
+    "classes": {
+      "class1": {
+        "className": "Syntax Errors",
+        "questionType": "click_options",
+        "question": "What is wrong with this code?",
+        "codeExample": "if x == 5\n    print('Five')",
+        "options": [
+          "Missing colon after the condition",
+          "Wrong comparison operator",
+          "print should be uppercase",
+          "x is not defined"
+        ],
+        "correctAnswer": "Missing colon after the condition",
+        "explanation": "In Python, if statements must end with a colon (:). Correct: if x == 5:"
+      },
+      "class2": {
+        "className": "Indentation",
+        "questionType": "true_false",
+        "question": "The following code will run without errors:",
+        "codeExample": "def greet():\nprint('Hello')",
+        "options": [
+          {"text": "True", "isCorrect": false},
+          {"text": "False", "isCorrect": true}
+        ],
+        "correctAnswer": false,
+        "explanation": "Python requires proper indentation. The print statement must be indented inside the function."
+      },
+      "class3": {
+        "className": "Logic Errors",
+        "questionType": "fill_blank_multiple",
+        "question": "Fix the loop to print numbers 1 to 5:",
+        "codeTemplate": "for i in range(___, ___):\n    print(i)",
+        "blanks": [
+          {"id": 1, "correctAnswer": "1"},
+          {"id": 2, "correctAnswer": "6"}
+        ],
+        "explanation": "range(1, 6) generates numbers 1, 2, 3, 4, 5. The end value is exclusive."
+      }
+    }
+  },
+  "level3": {
+    "name": "Mastery",
+    "description": "Write and optimize Python code",
+    "classes": {
+      "class1": {
+        "className": "List Comprehensions",
+        "questionType": "drag_drop",
+        "question": "Drag the expressions below to the correct output category:",
+        "items": [
+          {"expression": "[x*2 for x in range(4)]", "correctCategory": "Number"},
+          {"expression": "[w.upper() for w in ['a','b','c']]", "correctCategory": "String"}
+        ],
+        "categories": ["Number", "String"],
+        "explanation": "List comprehensions provide a concise way to create lists."
+      },
+      "class2": {
+        "className": "Dictionaries",
+        "questionType": "dropdown",
+        "question": "Complete the Python function below by selecting the correct term for each blank:",
+        "codeTemplate": "def check_key_exists(user_dict, key_name):\n    if key_name _1_ user_dict:\n        return True\n    else:\n        return _2_",
+        "blanks": [
+          {"id": 1, "options": ["in", "of", "from", "at"], "correctAnswer": "in"},
+          {"id": 2, "options": ["True", "False", "None", "0"], "correctAnswer": "False"}
+        ],
+        "explanation": "The 'in' keyword checks if a key exists in a dictionary."
+      },
+      "class3": {
+        "className": "Create a Function",
+        "questionType": "sort_options",
+        "question": "Place the following steps in the correct order to sort the numbers list from largest to smallest and print the result:",
+        "options": [
+          "print(numbers)",
+          "numbers.sort(reverse=True)",
+          "numbers = [5, 1, 8, 3]"
+        ],
+        "correctOrder": [
+          "numbers = [5, 1, 8, 3]",
+          "numbers.sort(reverse=True)",
+          "print(numbers)"
+        ],
+        "explanation": "First define the list, then sort it in reverse order, finally print the result."
+      }
+    }
+  },
+  "metadata": {
+    "gameName": "Code & Grow",
+    "totalLevels": 3,
+    "classesPerLevel": 3,
+    "version": "1.0"
+  }
+}
