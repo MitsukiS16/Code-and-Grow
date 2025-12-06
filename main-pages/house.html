@@ -12,6 +12,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <script src="/scripts/sleeping-panda.js"></script>
+    <script src="/scripts/wardrobe-panda.js"></script>
   </head>
 
   <body class="room-img">
@@ -47,16 +50,55 @@
 
     <div class="main-board">
       <img
-        src="/assets/panda.png"
+        src="/assets/panda-young.png"
         alt="Game Panda"
         class="island-element panda"
       />
-      <img src="/assets/bed.png" alt="Game Bed" class="island-element bed" />
+      <img
+        src="/assets/bed.png"
+        alt="Game Panda Bed"
+        class="island-element bed"
+      />
       <img
         src="/assets/wardrobe.png"
-        alt="Game Wardrobe"
+        alt="Game Panda Wardrobe"
         class="island-element wardrobe"
       />
+    </div>
+
+    <!-- Sleep Modal -->
+    <div id="sleepModal" class="modal">
+      <div class="modal-content">
+        <p class="sleep-message">
+          Your panda is sleeping... please wait 5 seconds 💤
+        </p>
+        <button id="wakeUpBtn" style="display: none">Wake Up</button>
+      </div>
+    </div>
+
+    <!-- Wardrobe Modal -->
+    <div id="wardrobeModal" class="modal">
+      <div class="modal-content wardrobe-content">
+        <div class="panda-preview">
+          <img src="/assets/panda.png" alt="Panda" class="panda-img" />
+        </div>
+        <div class="clothes-list">
+          <h3>Available Clothes</h3>
+          <div class="clothes-item" data-img="/assets/hat.png">
+            <img src="/assets/hat.png" alt="Hat" />
+            <span>Hat</span>
+          </div>
+          <div class="clothes-item" data-img="/assets/shirt.png">
+            <img src="/assets/shirt.png" alt="Shirt" />
+            <span>Shirt</span>
+          </div>
+          <div class="clothes-item" data-img="/assets/pants.png">
+            <img src="/assets/pants.png" alt="Pants" />
+            <span>Pants</span>
+          </div>
+        </div>
+        <button id="closeWardrobeBtn">Close</button>
+      </div>
     </div>
   </body>
 </html>

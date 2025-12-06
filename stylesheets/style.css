@@ -202,10 +202,14 @@
 }
 
 .panda {
-  max-width: 25vh;
+  max-width: 20vh;
   bottom: 10vh;
   left: 45vw;
   height: auto;
+}
+
+.island-element .panda {
+  max-width: 40vh;
 }
 
 .bridge {
@@ -531,6 +535,163 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+/* ===================================================================== */
+/* =========================== MODAL CSS =========================== */
+/* ===================================================================== */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    26,
+    94,
+    120,
+    0.6
+  ); /* semi-transparent overlay using --color-dark-teal */
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+  padding: 25px 35px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transform: scale(0.8);
+  animation: scaleUp 0.3s forwards;
+  font-family: var(--font-primary);
+}
+
+.sleep-message {
+  font-size: 1.2rem;
+  color: var(--color-dark-teal);
+  margin-bottom: 20px;
+}
+
+#wakeUpBtn {
+  padding: 10px 25px;
+  font-size: 1rem;
+  background-color: var(--button-base);
+  border: 2px solid var(--button-border);
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--button-text);
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#wakeUpBtn:hover {
+  transform: scale(1.1);
+  background-color: var(--button-hover);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Optional: panda bobbing while sleeping */
+.panda.sleeping {
+  animation: bob 1s infinite alternate;
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(10px);
+  }
+}
+
+.wardrobe-content {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+  padding: 30px;
+  border-radius: 20px;
+  gap: 30px;
+  align-items: flex-start;
+  max-width: 700px;
+}
+
+.panda-preview {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panda-img {
+  max-width: 200px;
+  border-radius: 15px;
+}
+
+.clothes-list {
+  flex: 1;
+}
+
+.clothes-list h3 {
+  color: var(--color-dark-teal);
+  margin-bottom: 15px;
+}
+
+.clothes-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.clothes-item:hover {
+  background-color: var(--button-hover);
+}
+
+.clothes-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+#closeWardrobeBtn {
+  margin-top: 15px;
+  padding: 10px 25px;
+  background-color: var(--button-base);
+  border: 2px solid var(--button-border);
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--button-text);
+  font-weight: bold;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+#closeWardrobeBtn:hover {
+  transform: scale(1.05);
+  background-color: var(--button-hover);
 }
 
 /* ===================================================================== */
