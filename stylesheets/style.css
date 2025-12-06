@@ -200,21 +200,26 @@
   bottom: 10vh;
   left: 0;
 }
+
 .panda {
-  max-width: 20vw;
+  max-width: 25vh;
   bottom: 10vh;
   left: 45vw;
+  height: auto;
 }
+
 .bridge {
   max-width: 30vw;
   bottom: 5vh;
   right: 0;
 }
+
 .bed {
   max-width: 40vw;
   bottom: 5vh;
   left: 5vw;
 }
+
 .wardrobe {
   max-width: 30vw;
   bottom: 10vh;
