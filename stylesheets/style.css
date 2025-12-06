@@ -697,6 +697,31 @@ input:checked + .slider:before {
   background-color: var(--button-hover);
 }
 
+.popup-message {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: var(--button-base);
+  color: var(--button-text);
+
+  padding: 10px 18px;
+  border-radius: 18px;
+  border: 2px solid var(--button-border);
+
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
 /* ===================================================================== */
 /* =========================== RESPONSIVE CSS =========================== */
 /* ===================================================================== */

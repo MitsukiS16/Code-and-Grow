@@ -16,6 +16,7 @@
     <script src="/scripts/sleeping-panda.js"></script>
     <script src="/scripts/wardrobe-panda.js"></script>
     <script src="/scripts/panda-animation.js"></script>
+    <script src="/scripts/elements-animation.js"></script>
   </head>
 
   <body class="room-img">
@@ -51,21 +52,29 @@
 
     <div class="main-board">
       <img
+        src="/assets/bed.png"
+        alt="Game Panda Bed"
+        class="island-element bed"
+      />
+      <div id="bedPopup" class="popup-message">
+        Click me! Here you can rest.
+      </div>
+
+      <img
         src="/assets/panda-young.png"
         alt="Game Panda"
         class="island-element panda"
         id="panda"
       />
-      <img
-        src="/assets/bed.png"
-        alt="Game Panda Bed"
-        class="island-element bed"
-      />
+
       <img
         src="/assets/wardrobe.png"
         alt="Game Panda Wardrobe"
         class="island-element wardrobe"
       />
+      <div id="wardrobePopup" class="popup-message">
+        Click me! Here you can change clothes.
+      </div>
     </div>
 
     <!-- Sleep Modal -->
