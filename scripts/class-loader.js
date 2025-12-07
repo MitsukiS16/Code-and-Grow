@@ -11,7 +11,6 @@ async function loadClassData() {
   try {
     const response = await fetch('/assets/data/classes.json');
     const data = await response.json();
-    
     const levelKey = `level${CURRENT_LEVEL}`;
     const classKey = `class${CURRENT_CLASS}`;
     
@@ -101,7 +100,7 @@ function checkClickOptions() {
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 填空题 (fill_blank) ============
@@ -138,7 +137,7 @@ function checkFillBlank() {
     input.value = classData.correctAnswer;
   }
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 多选题 (click_options_multiple) ============
@@ -167,20 +166,23 @@ function toggleOption(btn) {
 
 function checkMultipleChoice() {
   const allButtons = document.querySelectorAll('.option-btn');
+  let isCorrect = true;
   
   allButtons.forEach(btn => {
     btn.disabled = true;
-    const isCorrect = btn.dataset.correct === 'true';
+    const shouldBeSelected = btn.dataset.correct === 'true';
     const isSelected = btn.classList.contains('selected');
     
-    if (isCorrect) {
+    if (shouldBeSelected) {
       btn.classList.add('correct');
-    } else if (isSelected && !isCorrect) {
+      if (!isSelected) isCorrect = false; // miss correct option
+    } else if (isSelected) {
       btn.classList.add('incorrect');
+      isCorrect = false; // wrong option
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 判断题 (true_false) ============
@@ -213,6 +215,7 @@ function selectTrueFalse(btn) {
 
 function checkTrueFalse() {
   const allButtons = document.querySelectorAll('.option-btn');
+  const isCorrect = selectedAnswer === true;
   
   allButtons.forEach(btn => {
     btn.disabled = true;
@@ -223,7 +226,7 @@ function checkTrueFalse() {
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 多空填空题 (fill_blank_multiple) ============
@@ -244,21 +247,24 @@ function renderFillBlankMultiple(container) {
 }
 
 function checkFillBlankMultiple() {
+  let isCorrect = true;
+  
   classData.blanks.forEach((blank) => {
     const input = document.getElementById(`fillInput${blank.id}`);
     const userAnswer = input.value.trim();
-    const isCorrect = userAnswer === blank.correctAnswer;
+    const correct = userAnswer === blank.correctAnswer;
     
     input.disabled = true;
-    if (isCorrect) {
+    if (correct) {
       input.classList.add('correct');
     } else {
       input.classList.add('incorrect');
       input.value = blank.correctAnswer;
+      isCorrect = false;
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 拖拽题 (drag_drop) ============
@@ -316,6 +322,7 @@ function initDragDrop() {
 
 function checkDragDrop() {
   const items = document.querySelectorAll('.drag-item');
+  let isCorrect = true;
   
   items.forEach(item => {
     const parent = item.closest('.drop-zone');
@@ -327,11 +334,14 @@ function checkDragDrop() {
         item.classList.add('correct');
       } else {
         item.classList.add('incorrect');
+        isCorrect = false;
       }
+    } else {
+      isCorrect = false; // not placed in any zone
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 下拉选择题 (dropdown) ============
@@ -361,6 +371,8 @@ function renderDropdown(container) {
 }
 
 function checkDropdown() {
+  let isCorrect = true;
+  
   classData.blanks.forEach(blank => {
     const select = document.getElementById(`dropdown${blank.id}`);
     select.disabled = true;
@@ -370,10 +382,11 @@ function checkDropdown() {
     } else {
       select.classList.add('incorrect');
       select.value = blank.correctAnswer;
+      isCorrect = false;
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
 // ============ 排序题 (sort_options) ============
@@ -440,6 +453,7 @@ function getDragAfterElement(container, y) {
 
 function checkSortOptions() {
   const items = document.querySelectorAll('.sort-item');
+  let isCorrect = true;
   
   items.forEach((item, index) => {
     const userValue = item.dataset.value;
@@ -449,23 +463,42 @@ function checkSortOptions() {
       item.classList.add('correct');
     } else {
       item.classList.add('incorrect');
+      isCorrect = false;
     }
   });
   
-  showResult();
+  showResult(isCorrect);
 }
 
-function showResult() {
+
+function showResult(isCorrect = true) {
   document.getElementById('checkBtn').style.display = 'none';
   document.getElementById('nextBtn').style.display = 'block';
   document.getElementById('explanation').style.display = 'block';
-  markClassComplete();
+  
+  // lose energy
+  if (typeof useEnergy === 'function') {
+    useEnergy();
+  }
+  
+  if (isCorrect) {
+    // right answer: gain money
+    if (typeof gainMoney === 'function') {
+      const reward = gainMoney(CURRENT_LEVEL, CURRENT_CLASS);
+      console.log(`+${reward} coins!`);
+    }
+    markClassComplete();
+  } else {
+    // wrong answer: lose health
+    if (typeof loseHealth === 'function') {
+      loseHealth();
+    }
+  }
 }
 
 function markClassComplete() {
   const key = `level${CURRENT_LEVEL}_completed`;
   const completed = JSON.parse(localStorage.getItem(key) || '[]');
-  
   if (!completed.includes(CURRENT_CLASS)) {
     completed.push(CURRENT_CLASS);
     localStorage.setItem(key, JSON.stringify(completed));
