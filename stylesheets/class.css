@@ -33,7 +33,6 @@
   white-space: pre-wrap;
 }
 
-/* 选项容器 */
 .options-container {
   display: flex;
   flex-direction: column;
@@ -92,7 +91,6 @@
   cursor: not-allowed;
 }
 
-/* 填空输入框 */
 .fill-input {
   background: transparent;
   border: none;

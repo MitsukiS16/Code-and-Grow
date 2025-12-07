@@ -1,6 +1,12 @@
 let classData = null;
 let selectedAnswer = null;
 
+const CLASSES_PER_LEVEL = {
+  1: 3,
+  2: 3,
+  3: 3
+};
+
 async function loadClassData() {
   try {
     const response = await fetch('/assets/data/classes.json');
@@ -21,7 +27,6 @@ async function loadClassData() {
   }
 }
 
-// 根据题型渲染问题
 function renderQuestion() {
   const container = document.getElementById('classContainer');
   
@@ -114,7 +119,6 @@ function renderFillBlank(container) {
     </div>
   `;
   
-  // 监听输入
   document.getElementById('fillInput').addEventListener('input', function() {
     document.getElementById('checkBtn').disabled = this.value.trim() === '';
   });
@@ -337,7 +341,7 @@ function renderDropdown(container) {
   classData.blanks.forEach(blank => {
     const selectHtml = `
       <select class="dropdown-select" id="dropdown${blank.id}">
-        <option value="">--选择--</option>
+        <option value="">--choose--</option>
         ${blank.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
       </select>
     `;
@@ -451,15 +455,27 @@ function checkSortOptions() {
   showResult();
 }
 
-// ============ 通用函数 ============
 function showResult() {
   document.getElementById('checkBtn').style.display = 'none';
   document.getElementById('nextBtn').style.display = 'block';
   document.getElementById('explanation').style.display = 'block';
+  markClassComplete();
+}
+
+function markClassComplete() {
+  const key = `level${CURRENT_LEVEL}_completed`;
+  const completed = JSON.parse(localStorage.getItem(key) || '[]');
+  
+  if (!completed.includes(CURRENT_CLASS)) {
+    completed.push(CURRENT_CLASS);
+    localStorage.setItem(key, JSON.stringify(completed));
+    console.log(`Class ${CURRENT_CLASS} completed!`);
+  }
 }
 
 function goNext() {
-  if (CURRENT_CLASS < 3) {
+  const totalClasses = CLASSES_PER_LEVEL[CURRENT_LEVEL] || 3;
+  if (CURRENT_CLASS < totalClasses) {
     window.location.href = `class${CURRENT_CLASS + 1}.html`;
   } else {
     window.location.href = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
@@ -472,5 +488,4 @@ function showError(message) {
   `;
 }
 
-// 页面加载时执行
 document.addEventListener('DOMContentLoaded', loadClassData);
