@@ -8,6 +8,10 @@ const CLASSES_PER_LEVEL = {
 };
 
 async function loadClassData() {
+  if (!checkCanPlay()) {
+    return;
+  }
+  
   try {
     const response = await fetch('/assets/data/classes.json');
     const data = await response.json();
@@ -26,8 +30,53 @@ async function loadClassData() {
   }
 }
 
+function checkCanPlay() {
+  const energy = typeof getEnergy === 'function' ? getEnergy() : 10;
+  const health = typeof getHealth === 'function' ? getHealth() : 10;
+  
+  if (health <= 0) {
+    showGameOver('health');
+    return false;
+  }
+  if (energy <= 0) {
+    showGameOver('energy');
+    return false;
+  }
+  
+  return true;
+}
+
+function showGameOver(reason) {
+  const container = document.getElementById('classContainer');
+  
+  if (reason === 'health') {
+    container.innerHTML = `
+      <div class="game-over">
+        <h2>💔 Game Over</h2>
+        <p>You ran out of health.</p>
+        <p>Take a break and come back later!</p>
+        <button class="check-btn" onclick="window.location.href='/main-pages/start-menu.html'">
+          Back to Home
+        </button>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <div class="game-over">
+        <h2>⚡ No Energy</h2>
+        <p>You ran out of energy.</p>
+        <p>Rest to restore your energy!</p>
+        <button class="check-btn" onclick="window.location.href='/main-pages/levels/level${CURRENT_LEVEL}.html'">
+          Back to Level
+        </button>
+      </div>
+    `;
+  }
+}
+
 function renderQuestion() {
   const container = document.getElementById('classContainer');
+  selectedAnswer = null; // reset
   
   switch(classData.questionType) {
     case 'click_options':
@@ -73,9 +122,10 @@ function renderClickOptions(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkClickOptions()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
 }
@@ -93,10 +143,12 @@ function checkClickOptions() {
   
   allButtons.forEach(btn => {
     btn.disabled = true;
-    if (btn.dataset.answer === classData.correctAnswer) {
-      btn.classList.add('correct');
-    } else if (btn.classList.contains('selected') && !isCorrect) {
-      btn.classList.add('incorrect');
+    if (btn.classList.contains('selected')) {
+      if (isCorrect) {
+        btn.classList.add('correct');
+      } else {
+        btn.classList.add('incorrect');
+      }
     }
   });
   
@@ -112,9 +164,10 @@ function renderFillBlank(container) {
       <input type="text" class="fill-input" id="fillInput" placeholder="?" autocomplete="off">('Hello World')
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlank()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
   
@@ -134,7 +187,6 @@ function checkFillBlank() {
     input.classList.add('correct');
   } else {
     input.classList.add('incorrect');
-    input.value = classData.correctAnswer;
   }
   
   showResult(isCorrect);
@@ -153,9 +205,10 @@ function renderMultipleChoice(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkMultipleChoice()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
 }
@@ -169,16 +222,26 @@ function checkMultipleChoice() {
   let isCorrect = true;
   
   allButtons.forEach(btn => {
-    btn.disabled = true;
     const shouldBeSelected = btn.dataset.correct === 'true';
     const isSelected = btn.classList.contains('selected');
     
-    if (shouldBeSelected) {
-      btn.classList.add('correct');
-      if (!isSelected) isCorrect = false; // miss correct option
-    } else if (isSelected) {
-      btn.classList.add('incorrect');
-      isCorrect = false; // wrong option
+    if (shouldBeSelected !== isSelected) {
+      isCorrect = false;
+    }
+  });
+  
+  allButtons.forEach(btn => {
+    btn.disabled = true;
+    const isSelected = btn.classList.contains('selected');
+    
+    if (isCorrect) {
+      if (isSelected) {
+        btn.classList.add('correct');
+      }
+    } else {
+      if (isSelected) {
+        btn.classList.add('incorrect');
+      }
     }
   });
   
@@ -199,9 +262,10 @@ function renderTrueFalse(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkTrueFalse()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
 }
@@ -219,10 +283,12 @@ function checkTrueFalse() {
   
   allButtons.forEach(btn => {
     btn.disabled = true;
-    if (btn.dataset.correct === 'true') {
-      btn.classList.add('correct');
-    } else if (btn.classList.contains('selected')) {
-      btn.classList.add('incorrect');
+    if (btn.classList.contains('selected')) {
+      if (isCorrect) {
+        btn.classList.add('correct');
+      } else {
+        btn.classList.add('incorrect');
+      }
     }
   });
   
@@ -239,9 +305,10 @@ function renderFillBlankMultiple(container) {
       &nbsp;&nbsp;&nbsp;&nbsp;print(i)
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlankMultiple()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
 }
@@ -259,7 +326,6 @@ function checkFillBlankMultiple() {
       input.classList.add('correct');
     } else {
       input.classList.add('incorrect');
-      input.value = blank.correctAnswer;
       isCorrect = false;
     }
   });
@@ -290,9 +356,10 @@ function renderDragDrop(container) {
       </div>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkDragDrop()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
   
@@ -337,7 +404,7 @@ function checkDragDrop() {
         isCorrect = false;
       }
     } else {
-      isCorrect = false; // not placed in any zone
+      isCorrect = false;
     }
   });
   
@@ -363,9 +430,10 @@ function renderDropdown(container) {
     <p class="question-text">${classData.question}</p>
     <div class="code-display">${codeHtml}</div>
     <button class="check-btn" id="checkBtn" onclick="checkDropdown()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
 }
@@ -381,7 +449,6 @@ function checkDropdown() {
       select.classList.add('correct');
     } else {
       select.classList.add('incorrect');
-      select.value = blank.correctAnswer;
       isCorrect = false;
     }
   });
@@ -404,9 +471,10 @@ function renderSortOptions(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkSortOptions()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()">Next →</button>
-    <div class="explanation-box" id="explanation">
-      ✅ ${classData.explanation}
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
+    <div class="explanation-box" id="explanation" style="display:none;">
+      ${classData.explanation}
     </div>
   `;
   
@@ -470,11 +538,10 @@ function checkSortOptions() {
   showResult(isCorrect);
 }
 
-
-function showResult(isCorrect = true) {
+function showResult(isCorrect) {
   document.getElementById('checkBtn').style.display = 'none';
-  document.getElementById('nextBtn').style.display = 'block';
-  document.getElementById('explanation').style.display = 'block';
+  const explanationBox = document.getElementById('explanation');
+  explanationBox.style.display = 'block';
   
   // lose energy
   if (typeof useEnergy === 'function') {
@@ -482,18 +549,32 @@ function showResult(isCorrect = true) {
   }
   
   if (isCorrect) {
-    // right answer: gain money
+    // answer correct: show Next button and reward money
+    explanationBox.innerHTML = `✅ Correct! ${classData.explanation}`;
+    explanationBox.classList.remove('wrong');
+    explanationBox.classList.add('correct');
+    document.getElementById('nextBtn').style.display = 'block';
+    
     if (typeof gainMoney === 'function') {
       const reward = gainMoney(CURRENT_LEVEL, CURRENT_CLASS);
       console.log(`+${reward} coins!`);
     }
     markClassComplete();
   } else {
-    // wrong answer: lose health
+    // answer wrong: show Retry button
+    explanationBox.innerHTML = `❌ Wrong! Try again.`;
+    explanationBox.classList.remove('correct');
+    explanationBox.classList.add('wrong');
+    document.getElementById('retryBtn').style.display = 'block';
+    
     if (typeof loseHealth === 'function') {
       loseHealth();
     }
   }
+}
+
+function retry() {
+  renderQuestion();
 }
 
 function markClassComplete() {
@@ -502,7 +583,8 @@ function markClassComplete() {
   if (!completed.includes(CURRENT_CLASS)) {
     completed.push(CURRENT_CLASS);
     localStorage.setItem(key, JSON.stringify(completed));
-    console.log(`Class ${CURRENT_CLASS} completed!`);
+    console.log(`Level ${CURRENT_LEVEL} Class ${CURRENT_CLASS} completed!`);
+    console.log(`Current progress: ${JSON.stringify(completed)}`);
   }
 }
 

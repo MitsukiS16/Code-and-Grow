@@ -26,13 +26,14 @@
   padding: 12px 16px;
   border-radius: 8px;
   font-family: 'Consolas', 'Monaco', monospace;
-  color: #ff6b6b;
+  color: #d4d4d4;
   margin: 15px 0;
   font-size: 16px;
   text-align: center;
   white-space: pre-wrap;
 }
 
+/* option */
 .options-container {
   display: flex;
   flex-direction: column;
@@ -91,6 +92,7 @@
   cursor: not-allowed;
 }
 
+/* fill */
 .fill-input {
   background: transparent;
   border: none;
@@ -260,12 +262,20 @@
 
 /* explanation */
 .explanation-box {
-  background: #1b5e20;
   padding: 15px;
   border-radius: 10px;
   margin-top: 20px;
-  color: #c8e6c9;
   display: none;
+}
+
+.explanation-box.correct {
+  background: #1b5e20;
+  color: #c8e6c9;
+}
+
+.explanation-box.wrong {
+  background: #b71c1c;
+  color: #ffcdd2;
 }
 
 /* check button */
@@ -293,16 +303,27 @@
   cursor: not-allowed;
 }
 
-.next-btn {
+/* Next button */
+/* .next-btn {
   background: #4CAF50;
   display: none;
 }
 
 .next-btn:hover {
   background: #45a049;
+} */
+
+/* Retry button */
+/* .retry-btn {
+  background: #FF9800;
+  display: none;
 }
 
-/* loading */
+.retry-btn:hover {
+  background: #F57C00;
+} */
+
+/* load */
 .loading {
   color: white;
   text-align: center;

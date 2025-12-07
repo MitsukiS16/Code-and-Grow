@@ -11,29 +11,25 @@ const MONEY_REWARDS = {
 function getEnergy() {
   return parseInt(localStorage.getItem('energy') ?? DEFAULT_ENERGY);
 }
-
 function getHealth() {
   return parseInt(localStorage.getItem('health') ?? DEFAULT_HEALTH);
 }
-
 function getMoney() {
   return parseInt(localStorage.getItem('money') ?? DEFAULT_MONEY);
 }
 
 function setEnergy(value) {
-  const newValue = Math.max(0, Math.min(10, value)); // 0-10
+  const newValue = Math.max(0, Math.min(10, value));
   localStorage.setItem('energy', newValue);
   updateResourceDisplay();
   return newValue;
 }
-
 function setHealth(value) {
-  const newValue = Math.max(0, Math.min(10, value)); // 0-10
+  const newValue = Math.max(0, Math.min(10, value));
   localStorage.setItem('health', newValue);
   updateResourceDisplay();
   return newValue;
 }
-
 function setMoney(value) {
   const newValue = Math.max(0, value);
   localStorage.setItem('money', newValue);
@@ -41,17 +37,15 @@ function setMoney(value) {
   return newValue;
 }
 
-// use energy (start class)
 function useEnergy() {
   const current = getEnergy();
   if (current > 0) {
     setEnergy(current - 1);
     return true;
   }
-  return false; // no energy left
+  return false;
 }
 
-// lose health (fail class)
 function loseHealth() {
   const current = getHealth();
   if (current > 0) {
@@ -61,7 +55,6 @@ function loseHealth() {
   return 0;
 }
 
-// gain money (complete class)
 function gainMoney(level, classNum) {
   const reward = MONEY_REWARDS[level] || { base: 10, perClass: 2 };
   const amount = reward.base + (classNum * reward.perClass);
@@ -70,25 +63,20 @@ function gainMoney(level, classNum) {
   return amount;
 }
 
-// restore energy
-function restoreEnergy(amount = 10) {
-  setEnergy(getEnergy() + amount);
-}
+// not used currently
+// function restoreEnergy(amount = 10) {
+//   setEnergy(getEnergy() + amount);
+// }
+// function restoreHealth(amount = 10) {
+//   setHealth(getHealth() + amount);
+// }
+// function resetAllResources() {
+//   localStorage.setItem('energy', DEFAULT_ENERGY);
+//   localStorage.setItem('health', DEFAULT_HEALTH);
+//   localStorage.setItem('money', DEFAULT_MONEY);
+//   updateResourceDisplay();
+// }
 
-// restore health
-function restoreHealth(amount = 10) {
-  setHealth(getHealth() + amount);
-}
-
-// reset all resources to default
-function resetAllResources() {
-  localStorage.setItem('energy', DEFAULT_ENERGY);
-  localStorage.setItem('health', DEFAULT_HEALTH);
-  localStorage.setItem('money', DEFAULT_MONEY);
-  updateResourceDisplay();
-}
-
-// update resource display on the page
 function updateResourceDisplay() {
   const energyDisplay = document.getElementById('energyDisplay');
   const healthDisplay = document.getElementById('healthDisplay');
@@ -105,25 +93,6 @@ function updateResourceDisplay() {
   }
 }
 
-// check if player can play (has energy and health)
-function canPlay() {
-  return getEnergy() > 0 && getHealth() > 0;
-}
-
-function checkGameOver() {
-  if (getHealth() <= 0) {
-    alert('Game Over! You ran out of health.');
-    window.location.href = '/main-pages/start-menu.html';
-    return true;
-  }
-  if (getEnergy() <= 0) {
-    alert('No energy left! Please rest to restore energy.');
-    return true;
-  }
-  return false;
-}
-
-// Initialize resources on page load
 document.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('energy') === null) {
     localStorage.setItem('energy', DEFAULT_ENERGY);
