@@ -1,5 +1,5 @@
 const CLASSES_PER_LEVEL = {
-  1: 3,  // Level 1 has 3 class
+  1: 3,  // Level 1 has 3 classes
   2: 3,
   3: 3
 };

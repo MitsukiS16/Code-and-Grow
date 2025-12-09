@@ -76,8 +76,6 @@ function updateProfileDisplay() {
   if (levelDisplay) {
     if (currentLevel === 0) {
       levelDisplay.textContent = "Not started yet";
-    } else if (currentLevel === 3 && isLevelCompleted(3)) {
-      levelDisplay.textContent = `Level ${currentLevel}: ${levelName} ⭐`;
     } else {
       levelDisplay.textContent = `Level ${currentLevel}: ${levelName}`;
     }

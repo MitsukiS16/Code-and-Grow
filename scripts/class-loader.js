@@ -1,8 +1,10 @@
 let classData = null;
+let lessonData = null;
 let selectedAnswer = null;
+let lessonCompleted = false;
 
 const CLASSES_PER_LEVEL = {
-  1: 3,
+  1: 3,  // Level 1 has 3 classes
   2: 3,
   3: 3
 };
@@ -13,14 +15,26 @@ async function loadClassData() {
   }
   
   try {
-    const response = await fetch('/assets/data/classes.json');
-    const data = await response.json();
+    // load class data
+    const classResponse = await fetch('/assets/data/classes.json');
+    const classJson = await classResponse.json();
+    // load lesson data
+    const lessonResponse = await fetch('/assets/data/lessons.json');
+    const lessonJson = await lessonResponse.json();
+
     const levelKey = `level${CURRENT_LEVEL}`;
     const classKey = `class${CURRENT_CLASS}`;
     
-    if (data[levelKey] && data[levelKey].classes[classKey]) {
-      classData = data[levelKey].classes[classKey];
-      renderQuestion();
+    if (classJson[levelKey] && classJson[levelKey].classes[classKey]) {
+      classData = classJson[levelKey].classes[classKey];
+      lessonData = lessonJson[levelKey]?.classes[classKey] || null;
+    
+      // first render lesson if exists
+      if (lessonData) {
+        renderLesson();
+      } else {
+        renderQuestion();
+      }
     } else {
       showError('Class not found');
     }
@@ -74,9 +88,79 @@ function showGameOver(reason) {
   }
 }
 
+// ============ render lessons ============
+function renderLesson() {
+  const container = document.getElementById('classContainer');
+  
+  let rulesHtml = '';
+  if (lessonData.rules) {
+    rulesHtml = `
+      <ul class="lesson-rules">
+        ${lessonData.rules.map(rule => `<li>${rule}</li>`).join('')}
+      </ul>
+    `;
+  }
+  
+  let examplesHtml = '';
+  if (lessonData.examples) {
+    if (lessonData.examples.valid && lessonData.examples.invalid) {
+      examplesHtml = `
+        <div class="lesson-examples">
+          <div class="example-group valid">
+            <h4>✅ Valid</h4>
+            <code>${lessonData.examples.valid.join(', ')}</code>
+          </div>
+          <div class="example-group invalid">
+            <h4>❌ Invalid</h4>
+            <code>${lessonData.examples.invalid.join(', ')}</code>
+          </div>
+        </div>
+      `;
+    } else if (lessonData.examples.code) {
+      examplesHtml = `
+        <div class="code-block">
+          <pre>${lessonData.examples.code.join('\n')}</pre>
+        </div>
+      `;
+    } else if (lessonData.examples.wrong && lessonData.examples.correct) {
+      examplesHtml = `
+        <div class="lesson-examples">
+          <div class="example-group invalid">
+            <h4>❌ Wrong</h4>
+            <div class="code-block"><pre>${lessonData.examples.wrong.join('\n')}</pre></div>
+          </div>
+          <div class="example-group valid">
+            <h4>✅ Correct</h4>
+            <div class="code-block"><pre>${lessonData.examples.correct.join('\n')}</pre></div>
+          </div>
+        </div>
+      `;
+    }
+  }
+  
+  container.innerHTML = `
+    <div class="lesson-container">
+      <h2>📚 ${lessonData.lessonTitle}</h2>
+      <div class="lesson-content">
+        ${lessonData.content.map(p => `<p>${p}</p>`).join('')}
+      </div>
+      ${rulesHtml}
+      ${examplesHtml}
+      <button class="check-btn start-btn" onclick="startExercise()">
+        Start Exercise
+      </button>
+    </div>
+  `;
+}
+
+function startExercise() {
+  lessonCompleted = true;
+  renderQuestion();
+}
+
 function renderQuestion() {
   const container = document.getElementById('classContainer');
-  selectedAnswer = null; // reset
+  selectedAnswer = null;
   
   switch(classData.questionType) {
     case 'click_options':
@@ -113,7 +197,7 @@ function renderClickOptions(container) {
   container.innerHTML = `
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
-    ${classData.codeExample ? `<div class="code-display">${classData.codeExample}</div>` : ''}
+    ${classData.codeExample ? `<div class="code-block"><pre>${classData.codeExample}</pre></div>` : ''}
     <div class="options-container">
       ${classData.options.map(opt => `
         <button class="option-btn" data-answer="${opt}" onclick="selectOption(this)">
@@ -122,7 +206,7 @@ function renderClickOptions(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkClickOptions()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -160,11 +244,11 @@ function renderFillBlank(container) {
   container.innerHTML = `
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
-    <div class="code-display">
-      <input type="text" class="fill-input" id="fillInput" placeholder="?" autocomplete="off">('Hello World')
+    <div class="code-block">
+      <pre><input type="text" class="fill-input" id="fillInput" placeholder="?" autocomplete="off">('Hello World')</pre>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlank()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -205,7 +289,7 @@ function renderMultipleChoice(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkMultipleChoice()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -253,7 +337,7 @@ function renderTrueFalse(container) {
   container.innerHTML = `
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
-    ${classData.codeExample ? `<div class="code-display">${classData.codeExample}</div>` : ''}
+    ${classData.codeExample ? `<div class="code-block"><pre>${classData.codeExample}</pre></div>` : ''}
     <div class="options-container">
       ${classData.options.map(opt => `
         <button class="option-btn" data-correct="${opt.isCorrect}" onclick="selectTrueFalse(this)">
@@ -262,7 +346,7 @@ function renderTrueFalse(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkTrueFalse()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -300,12 +384,12 @@ function renderFillBlankMultiple(container) {
   container.innerHTML = `
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
-    <div class="code-display">
-      for i in range(<input type="text" class="fill-input small" id="fillInput1" placeholder="?">, <input type="text" class="fill-input small" id="fillInput2" placeholder="?">):<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+    <div class="code-block">
+      <pre>for i in range(<input type="text" class="fill-input small" id="fillInput1" placeholder="?">, <input type="text" class="fill-input small" id="fillInput2" placeholder="?">):
+    print(i)</pre>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlankMultiple()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -356,7 +440,7 @@ function renderDragDrop(container) {
       </div>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkDragDrop()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -416,21 +500,19 @@ function renderDropdown(container) {
   let codeHtml = classData.codeTemplate;
   
   classData.blanks.forEach(blank => {
-    const selectHtml = `
-      <select class="dropdown-select" id="dropdown${blank.id}">
+    const selectHtml = `<select class="dropdown-select" id="dropdown${blank.id}">
         <option value="">--choose--</option>
         ${blank.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-      </select>
-    `;
+      </select>`;
     codeHtml = codeHtml.replace(`_${blank.id}_`, selectHtml);
   });
   
   container.innerHTML = `
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
-    <div class="code-display">${codeHtml}</div>
+    <div class="code-block"><pre>${codeHtml}</pre></div>
     <button class="check-btn" id="checkBtn" onclick="checkDropdown()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -466,12 +548,12 @@ function renderSortOptions(container) {
     <div class="sort-container" id="sortContainer">
       ${shuffled.map((opt) => `
         <div class="sort-item" draggable="true" data-value="${opt}">
-          <span class="sort-handle">☰</span> ${opt}
+          <span class="sort-handle">☰</span> <code>${opt}</code>
         </div>
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkSortOptions()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next →</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -538,18 +620,17 @@ function checkSortOptions() {
   showResult(isCorrect);
 }
 
+
 function showResult(isCorrect) {
   document.getElementById('checkBtn').style.display = 'none';
   const explanationBox = document.getElementById('explanation');
   explanationBox.style.display = 'block';
   
-  // lose energy
   if (typeof useEnergy === 'function') {
     useEnergy();
   }
   
   if (isCorrect) {
-    // answer correct: show Next button and reward money
     explanationBox.innerHTML = `✅ Correct! ${classData.explanation}`;
     explanationBox.classList.remove('wrong');
     explanationBox.classList.add('correct');
@@ -561,7 +642,6 @@ function showResult(isCorrect) {
     }
     markClassComplete();
   } else {
-    // answer wrong: show Retry button
     explanationBox.innerHTML = `❌ Wrong! Try again.`;
     explanationBox.classList.remove('correct');
     explanationBox.classList.add('wrong');

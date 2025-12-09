@@ -1,0 +1,212 @@
+{
+  "level1": {
+    "classes": {
+      "class1": {
+        "lessonTitle": "Variable Naming Rules",
+        "content": [
+          "Variables are containers for storing data values. In Python, variable names must follow these rules:"
+        ],
+        "rules": [
+          "Must start with a letter (a-z, A-Z) or underscore (_)",
+          "Cannot start with a number",
+          "Can only contain letters, numbers, and underscores",
+          "Cannot contain spaces or special characters",
+          "Cannot be Python keywords (if, for, while, etc.)",
+          "Are case-sensitive (age and Age are different)"
+        ],
+        "examples": {
+          "valid": ["player_score", "totalCount", "_private", "item2"],
+          "invalid": ["total-score", "first name", "for", "2fast" ]
+        }
+      },
+      "class2": {
+        "lessonTitle": "The Print Function",
+        "content": [
+          "The print() function outputs text to the screen. It's one of the most basic and useful functions in Python."
+        ],
+        "rules": [
+          "Use print() to display output",
+          "Text (strings) must be inside quotes",
+          "You can use single quotes ' or double quotes \"",
+          "Variables are printed without quotes",
+          "Multiple items can be separated by commas"
+        ],
+        "examples": {
+          "code": [
+            "print('Welcome to Python')",
+            "print(\"Learning is fun\")",
+            "score = 100",
+            "print(score)",
+            "print('Your score is', score)"
+          ]
+        }
+      },
+      "class3": {
+        "lessonTitle": "Python Data Types",
+        "content": [
+          "Python has several built-in data types. Each type serves a different purpose in programming."
+        ],
+        "rules": [
+          "str - Text strings: 'hello', \"world\"",
+          "int - Whole numbers: 1, 42, -10",
+          "float - Decimal numbers: 3.14, -0.5",
+          "bool - True or False values",
+          "list - Ordered collection: [1, 2, 3]",
+          "dict - Key-value pairs: {'key': 'value'}",
+          "set - Unique unordered values: {1, 2, 3}",
+          "tuple - Immutable sequence: (1, 2, 3)"
+        ],
+        "examples": {
+          "code": [
+            "name = 'Bob'         # str",
+            "age = 25             # int", 
+            "height = 1.75        # float",
+            "is_student = False   # bool"
+          ]
+        }
+      }
+    }
+  },
+  "level2": {
+    "classes": {
+      "class1": {
+        "lessonTitle": "Understanding Syntax Errors",
+        "content": [
+          "Syntax errors occur when Python can't understand your code. They must be fixed before your program can run."
+        ],
+        "rules": [
+          "Always end if/for/while/def/class with a colon (:)",
+          "Match all parentheses (), brackets [], and braces {}",
+          "Match all quotes - start and end with the same type",
+          "Check spelling of Python keywords",
+          "Don't forget commas between list items"
+        ],
+        "examples": {
+          "wrong": [
+            "for i in range(5)    # Missing colon",
+            "name = 'Alice\"       # Mismatched quotes"
+          ],
+          "correct": [
+            "for i in range(5):   # Has colon",
+            "name = 'Alice'       # Matching quotes"
+          ]
+        }
+      },
+      "class2": {
+        "lessonTitle": "Python Indentation",
+        "content": [
+          "Python uses indentation to define code blocks. This is different from most other programming languages."
+        ],
+        "rules": [
+          "Standard indentation is 4 spaces",
+          "Code inside a block must be indented",
+          "All lines in the same block need equal indentation",
+          "Never mix tabs and spaces",
+          "Indentation errors will crash your program"
+        ],
+        "examples": {
+          "wrong": [
+            "if score > 50:",
+            "print('Pass')  # Not indented - Error!"
+          ],
+          "correct": [
+            "if score > 50:",
+            "    print('Pass')  # Properly indented"
+          ]
+        }
+      },
+      "class3": {
+        "lessonTitle": "The range() Function",
+        "content": [
+          "range() generates a sequence of numbers. It's essential for creating loops with specific counts."
+        ],
+        "rules": [
+          "range(n) gives numbers from 0 to n-1",
+          "range(start, stop) gives start to stop-1",
+          "range(start, stop, step) adds a step value",
+          "The stop value is never included in the output",
+          "range() is memory efficient for large sequences"
+        ],
+        "examples": {
+          "code": [
+            "range(4)         # 0, 1, 2, 3",
+            "range(2, 7)      # 2, 3, 4, 5, 6",
+            "range(0, 10, 3)  # 0, 3, 6, 9"
+          ]
+        }
+      }
+    }
+  },
+  "level3": {
+    "classes": {
+      "class1": {
+        "lessonTitle": "List Comprehensions",
+        "content": [
+          "List comprehensions create lists in a single line. They are more concise than traditional for loops."
+        ],
+        "rules": [
+          "Syntax: [expression for item in iterable]",
+          "Can include conditions: [expr for item in list if condition]",
+          "The expression transforms each element",
+          "Results in a new list",
+          "Best for simple transformations"
+        ],
+        "examples": {
+          "code": [
+            "# Double each number",
+            "nums = [1, 2, 3, 4]",
+            "doubled = [n * 2 for n in nums]",
+            "# Result: [2, 4, 6, 8]",
+            "",
+            "# Filter even numbers",
+            "evens = [n for n in nums if n % 2 == 0]",
+            "# Result: [2, 4]"
+          ]
+        }
+      },
+      "class2": {
+        "lessonTitle": "Working with Dictionaries",
+        "content": [
+          "Dictionaries store data as key-value pairs. They provide fast lookup by key."
+        ],
+        "rules": [
+          "Create with curly braces: {}",
+          "Each entry has a key and value: {key: value}",
+          "Access values using keys: dict[key]",
+          "Use 'in' to check if a key exists",
+          "Keys must be unique and immutable"
+        ],
+        "examples": {
+          "code": [
+            "student = {'name': 'Bob', 'grade': 90}",
+            "print(student['grade'])      # 90",
+            "'name' in student            # True",
+            "student['subject'] = 'Math'  # Add key"
+          ]
+        }
+      },
+      "class3": {
+        "lessonTitle": "Sorting Lists",
+        "content": [
+          "Sorting arranges list elements in order. Python offers flexible sorting options."
+        ],
+        "rules": [
+          "sort() modifies the original list",
+          "sorted() returns a new sorted list",
+          "Default order is ascending (smallest first)",
+          "Use reverse=True for descending order",
+          "Works with numbers and strings"
+        ],
+        "examples": {
+          "code": [
+            "scores = [88, 45, 92, 71]",
+            "scores.sort()  # [45, 71, 88, 92]",
+            "",
+            "names = ['Zoe', 'Amy', 'Max']",
+            "names.sort()   # ['Amy', 'Max', 'Zoe']"
+          ]
+        }
+      }
+    }
+  }
+}
