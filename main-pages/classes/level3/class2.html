@@ -18,10 +18,10 @@
   <body class="water-img">
     <div class="top-bar">
       <div>
-        <a href="/main-pages/start-menu.html" class="bar-button">
+        <a href="/main-pages/start-menu.html" class="bar-button" data-sound="icon">
           <i class="fa-solid fa-house"></i>
         </a>
-        <a href="/main-pages/levels/level1.html" class="bar-button">
+        <a href="/main-pages/levels/level3.html" class="bar-button" data-sound="icon">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
       </div>
@@ -41,12 +41,8 @@
         </div>
       </div>
 
-      <a href="/side-pages/perfil.html" class="bar-button">Perfil</a>
+      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">Perfil</a>
     </div>
-    <!-- <div class="blackboard profile-stats">
-      <h2>Question</h2>
-      <p>Answer</p>
-    </div> -->
     <div class="blackboard" id="classContainer">
       <div class="loading">Loading...</div>
     </div>
@@ -55,6 +51,9 @@
       const CURRENT_LEVEL = 3;
       const CURRENT_CLASS = 2;
     </script>
+    <audio id="rightSound" src="/assets/music/right.mp3" preload="auto"></audio>
+    <audio id="wrongSound" src="/assets/music/wrong.mp3" preload="auto"></audio>
+    <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
     <script src="/scripts/resource-manager.js"></script>
     <script src="/scripts/class-loader.js"></script>
   </body>

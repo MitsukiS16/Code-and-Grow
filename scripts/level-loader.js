@@ -48,34 +48,6 @@ function updateNodeStatus() {
       alert('Complete the previous class to unlock!');
     });
   });
-  
-  // 更新 Next Level 按钮
-  updateNextLevelButton();
-}
-
-function updateNextLevelButton() {
-  const nextLevelBtn = document.getElementById('nextLevelBtn');
-  if (!nextLevelBtn) return;
-  
-  if (isLevelCompleted() && CURRENT_LEVEL < TOTAL_LEVELS) {
-    nextLevelBtn.classList.remove('locked');
-    nextLevelBtn.onclick = function() {
-      window.location.href = `/main-pages/levels/level${CURRENT_LEVEL + 1}.html`;
-    };
-  } else if (CURRENT_LEVEL >= TOTAL_LEVELS && isLevelCompleted()) {
-    nextLevelBtn.textContent = '🎉 All Complete!';
-    nextLevelBtn.classList.remove('locked');
-    nextLevelBtn.classList.add('completed');
-    nextLevelBtn.onclick = function() {
-      alert('Congratulations! You have completed all levels!');
-    };
-  } else {
-    nextLevelBtn.classList.add('locked');
-    nextLevelBtn.onclick = function(e) {
-      e.preventDefault();
-      alert('Complete all classes to unlock the next level!');
-    };
-  }
 }
 
 document.addEventListener('DOMContentLoaded', updateNodeStatus);

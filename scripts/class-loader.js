@@ -4,10 +4,11 @@ let selectedAnswer = null;
 let lessonCompleted = false;
 
 const CLASSES_PER_LEVEL = {
-  1: 3,  // Level 1 has 3 classes
+  1: 3,
   2: 3,
   3: 3
 };
+const TOTAL_LEVELS = 3;
 
 async function loadClassData() {
   if (!checkCanPlay()) {
@@ -15,21 +16,16 @@ async function loadClassData() {
   }
   
   try {
-    // load class data
     const classResponse = await fetch('/assets/data/classes.json');
     const classJson = await classResponse.json();
-    // load lesson data
     const lessonResponse = await fetch('/assets/data/lessons.json');
     const lessonJson = await lessonResponse.json();
-
     const levelKey = `level${CURRENT_LEVEL}`;
     const classKey = `class${CURRENT_CLASS}`;
     
     if (classJson[levelKey] && classJson[levelKey].classes[classKey]) {
       classData = classJson[levelKey].classes[classKey];
       lessonData = lessonJson[levelKey]?.classes[classKey] || null;
-    
-      // first render lesson if exists
       if (lessonData) {
         renderLesson();
       } else {
@@ -88,7 +84,18 @@ function showGameOver(reason) {
   }
 }
 
-// ============ render lessons ============
+function getNextButtonText() {
+  const totalClasses = CLASSES_PER_LEVEL[CURRENT_LEVEL] || 3;
+  
+  if (CURRENT_CLASS < totalClasses) {
+    return 'Next';
+  } else if (CURRENT_LEVEL >= TOTAL_LEVELS) {
+    return '🎉 Finished';
+  } else {
+    return 'Next Level';
+  }
+}
+
 function renderLesson() {
   const container = document.getElementById('classContainer');
   
@@ -206,7 +213,7 @@ function renderClickOptions(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkClickOptions()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -248,7 +255,7 @@ function renderFillBlank(container) {
       <pre><input type="text" class="fill-input" id="fillInput" placeholder="?" autocomplete="off">('Hello World')</pre>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlank()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -289,7 +296,7 @@ function renderMultipleChoice(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkMultipleChoice()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -346,7 +353,7 @@ function renderTrueFalse(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkTrueFalse()" disabled>Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -389,7 +396,7 @@ function renderFillBlankMultiple(container) {
     print(i)</pre>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkFillBlankMultiple()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -440,7 +447,7 @@ function renderDragDrop(container) {
       </div>
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkDragDrop()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -512,7 +519,7 @@ function renderDropdown(container) {
     <p class="question-text">${classData.question}</p>
     <div class="code-block"><pre>${codeHtml}</pre></div>
     <button class="check-btn" id="checkBtn" onclick="checkDropdown()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -553,7 +560,7 @@ function renderSortOptions(container) {
       `).join('')}
     </div>
     <button class="check-btn" id="checkBtn" onclick="checkSortOptions()">Check</button>
-    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">Next</button>
+    <button class="check-btn next-btn" id="nextBtn" onclick="goNext()" style="display:none;">${getNextButtonText()}</button>
     <button class="check-btn retry-btn" id="retryBtn" onclick="retry()" style="display:none;">Retry</button>
     <div class="explanation-box" id="explanation" style="display:none;">
       ${classData.explanation}
@@ -620,11 +627,27 @@ function checkSortOptions() {
   showResult(isCorrect);
 }
 
+// ============ play sound ============
+function playResultSound(isCorrect) {
+  const soundId = isCorrect ? 'rightSound' : 'wrongSound';
+  const audio = document.getElementById(soundId);
+  if (audio) {
+    if (typeof isSfxEnabled === 'function' && !isSfxEnabled()) {
+      return;
+    }
+    if (typeof getVolume === 'function') {
+      audio.volume = getVolume();
+    }
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  }
+}
 
 function showResult(isCorrect) {
   document.getElementById('checkBtn').style.display = 'none';
   const explanationBox = document.getElementById('explanation');
   explanationBox.style.display = 'block';
+  playResultSound(isCorrect);
   
   if (typeof useEnergy === 'function') {
     useEnergy();
@@ -672,8 +695,10 @@ function goNext() {
   const totalClasses = CLASSES_PER_LEVEL[CURRENT_LEVEL] || 3;
   if (CURRENT_CLASS < totalClasses) {
     window.location.href = `class${CURRENT_CLASS + 1}.html`;
-  } else {
+  } else if (CURRENT_LEVEL >= TOTAL_LEVELS) {
     window.location.href = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
+  } else {
+    window.location.href = `/main-pages/levels/level${CURRENT_LEVEL + 1}.html`;
   }
 }
 

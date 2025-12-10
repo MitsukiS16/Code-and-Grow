@@ -16,7 +16,7 @@
     <div class="start-screen settings-page">
       <div class="content-container">
         <div class="page-header-row">
-          <a href="/main-pages/start-menu.html" class="back-button">
+          <a href="/main-pages/start-menu.html" class="back-button" data-sound="icon">
             <i class="fa-solid fa-house"></i>
           </a>
 
@@ -61,41 +61,7 @@
 
     <audio id="bgmAudio" src="/assets/music/menu.mp3" preload="auto" loop></audio>
     <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
-
+    <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
     <script src="/scripts/sound-manager.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const settings = getAudioSettings();
-        document.getElementById('bgmToggle').checked = settings.bgmEnabled;
-        document.getElementById('sfxToggle').checked = settings.sfxEnabled;
-
-        const volumePercent = Math.round(settings.volume * 100);
-        document.getElementById('volumeSlider').value = volumePercent;
-        document.getElementById('volumeDisplay').textContent = volumePercent + '%';
-
-        const hintsEnabled = localStorage.getItem('hintsEnabled') === 'true';
-        document.getElementById('hintsToggle').checked = hintsEnabled;
-      });
-
-      document.getElementById('bgmToggle').addEventListener('change', function() {
-        setBgmEnabled(this.checked);
-      });
-      document.getElementById('sfxToggle').addEventListener('change', function() {
-        setSfxEnabled(this.checked);
-        if (this.checked) {
-          playSound('click');
-        }
-      });
-
-      document.getElementById('volumeSlider').addEventListener('input', function() {
-        const volume = this.value / 100;
-        document.getElementById('volumeDisplay').textContent = this.value + '%';
-        setVolume(volume);
-      });
-      
-      document.getElementById('hintsToggle').addEventListener('change', function() {
-        localStorage.setItem('hintsEnabled', this.checked);
-      });
-    </script>
   </body>
 </html>

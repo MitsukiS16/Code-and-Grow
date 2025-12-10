@@ -1,13 +1,10 @@
-// ============ 音频管理系统 ============
-
-// 默认设置
 const DEFAULT_SETTINGS = {
   bgmEnabled: true,
   sfxEnabled: true,
   volume: 0.6
 };
 
-// ============ 设置管理 ============
+// get saved settings or defaults
 function getAudioSettings() {
   const saved = localStorage.getItem('audioSettings');
   return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
@@ -29,7 +26,7 @@ function getVolume() {
   return getAudioSettings().volume;
 }
 
-// ============ 设置修改 ============
+// modify settings
 function setBgmEnabled(enabled) {
   const settings = getAudioSettings();
   settings.bgmEnabled = enabled;
@@ -41,7 +38,6 @@ function setBgmEnabled(enabled) {
       bgm.play().catch(() => {});
     } else {
       bgm.pause();
-      // 清除保存的播放位置
       localStorage.removeItem('bgmCurrentTime');
     }
   }
@@ -64,10 +60,8 @@ function setVolume(volume) {
   }
 }
 
-// ============ 音效播放 ============
 function playSound(soundName) {
   if (!isSfxEnabled()) return;
-  
   const audio = document.getElementById(soundName + 'Sound');
   if (audio) {
     audio.volume = getVolume();
@@ -76,7 +70,7 @@ function playSound(soundName) {
   }
 }
 
-// ============ 背景音乐管理 ============
+// background music
 function initBgm() {
   const bgm = document.getElementById('bgmAudio');
   if (!bgm) return;
@@ -85,20 +79,16 @@ function initBgm() {
   bgm.volume = settings.volume;
   bgm.loop = true;
   
-  // 如果音乐被禁用，不播放
   if (!settings.bgmEnabled) {
     return;
   }
   
-  // 恢复播放位置
   const savedTime = localStorage.getItem('bgmCurrentTime');
   if (savedTime) {
     bgm.currentTime = parseFloat(savedTime);
   }
   
-  // 尝试播放
   bgm.play().catch(() => {
-    // 自动播放被阻止，等待用户交互
     document.addEventListener('click', function playOnClick() {
       if (isBgmEnabled()) {
         const savedTime = localStorage.getItem('bgmCurrentTime');
@@ -111,7 +101,6 @@ function initBgm() {
     }, { once: true });
   });
   
-  // 定期保存播放位置（每秒）
   setInterval(() => {
     if (!bgm.paused && isBgmEnabled()) {
       localStorage.setItem('bgmCurrentTime', bgm.currentTime.toString());
@@ -119,7 +108,6 @@ function initBgm() {
   }, 1000);
 }
 
-// 页面离开前保存播放位置
 function saveBgmPosition() {
   const bgm = document.getElementById('bgmAudio');
   if (bgm && !bgm.paused && isBgmEnabled()) {
@@ -127,7 +115,7 @@ function saveBgmPosition() {
   }
 }
 
-// ============ 音效按钮 ============
+// sound effects for buttons
 function initSoundButtons() {
   const soundElements = document.querySelectorAll('[data-sound]');
   
@@ -136,7 +124,6 @@ function initSoundButtons() {
       const soundName = this.dataset.sound;
       const href = this.getAttribute('href');
       
-      // 保存音乐播放位置
       saveBgmPosition();
       
       if (href) {
@@ -152,11 +139,59 @@ function initSoundButtons() {
   });
 }
 
-// ============ 初始化 ============
+function initSettingsPage() {
+  const bgmToggle = document.getElementById('bgmToggle');
+  const sfxToggle = document.getElementById('sfxToggle');
+  const volumeSlider = document.getElementById('volumeSlider');
+  const volumeDisplay = document.getElementById('volumeDisplay');
+  const hintsToggle = document.getElementById('hintsToggle');
+  
+  if (!bgmToggle && !sfxToggle && !volumeSlider) return;
+  
+  const settings = getAudioSettings();
+  
+  if (bgmToggle) {
+    bgmToggle.checked = settings.bgmEnabled;
+    bgmToggle.addEventListener('change', function() {
+      setBgmEnabled(this.checked);
+    });
+  }
+  
+  if (sfxToggle) {
+    sfxToggle.checked = settings.sfxEnabled;
+    sfxToggle.addEventListener('change', function() {
+      setSfxEnabled(this.checked);
+      if (this.checked) {
+        playSound('click');
+      }
+    });
+  }
+  
+  if (volumeSlider && volumeDisplay) {
+    const volumePercent = Math.round(settings.volume * 100);
+    volumeSlider.value = volumePercent;
+    volumeDisplay.textContent = volumePercent + '%';
+    
+    volumeSlider.addEventListener('input', function() {
+      const volume = this.value / 100;
+      volumeDisplay.textContent = this.value + '%';
+      setVolume(volume);
+    });
+  }
+  
+  if (hintsToggle) {
+    const hintsEnabled = localStorage.getItem('hintsEnabled') === 'true';
+    hintsToggle.checked = hintsEnabled;
+    hintsToggle.addEventListener('change', function() {
+      localStorage.setItem('hintsEnabled', this.checked);
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   initBgm();
   initSoundButtons();
+  initSettingsPage();
 });
 
-// 页面关闭/跳转前保存位置
 window.addEventListener('beforeunload', saveBgmPosition);

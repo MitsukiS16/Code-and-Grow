@@ -19,7 +19,7 @@
 
   <body class="island-img">
     <div class="top-bar">
-      <a href="/main-pages/start-menu.html" class="bar-button">
+      <a href="/main-pages/start-menu.html" class="bar-button" data-sound="icon">
         <i class="fa-solid fa-house"></i>
       </a>
       <div class="resource-container">
@@ -37,13 +37,13 @@
         </div>
       </div>
 
-      <a href="/side-pages/perfil.html" class="bar-button">
+      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">
         <i class="fa-solid fa-user"></i>
       </a>
     </div>
 
     <div class="main-board">
-      <a href="/main-pages/house.html">
+      <a href="/main-pages/house.html" data-sound="click">
         <img
           src="/assets/house.png"
           alt="Small House"
@@ -59,9 +59,10 @@
         alt="Game Panda"
         class="island-element panda"
         id="panda"
+        data-sound="panda"
       />
 
-      <a href="/main-pages/levels.html">
+      <a href="/main-pages/levels.html" data-sound="click">
         <img
           src="/assets/bridge.png"
           alt="Wooden Bridge"
@@ -72,6 +73,11 @@
         Click me! Here you can grow and learn.
       </div>
     </div>
+    <audio id="bgmAudio" src="/assets/music/home.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
+    <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
+    <audio id="pandaSound" src="/assets/music/panda.mp3" preload="auto"></audio>
+    <script src="/scripts/sound-manager.js"></script>
     <script src="/scripts/resource-manager.js"></script>
   </body>
 </html>

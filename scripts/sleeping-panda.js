@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 5000);
   });
 
-  wakeUpBtn.addEventListener("click", () => {
+  wakeUpBtn.addEventListener('click', function() {
+    if (typeof fullRestore === 'function') {
+      fullRestore();
+    }
     modal.style.display = "none";
   });
 });

@@ -106,3 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   updateResourceDisplay();
 });
+
+// after sleep
+function fullRestore() {
+  setEnergy(10);
+  setHealth(10);
+}

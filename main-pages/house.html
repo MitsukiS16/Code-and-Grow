@@ -12,20 +12,15 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
-    <script src="/scripts/sleeping-panda.js"></script>
-    <script src="/scripts/wardrobe-panda.js"></script>
-    <script src="/scripts/panda-animation.js"></script>
-    <script src="/scripts/elements-animation.js"></script>
   </head>
 
   <body class="room-img">
     <div class="top-bar">
       <div>
-        <a href="/main-pages/start-menu.html" class="bar-button">
+        <a href="/main-pages/start-menu.html" class="bar-button" data-sound="icon">
           <i class="fa-solid fa-house"></i>
         </a>
-        <a href="/main-pages/island.html" class="bar-button">
+        <a href="/main-pages/island.html" class="bar-button" data-sound="icon">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
       </div>
@@ -45,7 +40,7 @@
         </div>
       </div>
 
-      <a href="/side-pages/perfil.html" class="bar-button">
+      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">
         <i class="fa-solid fa-user"></i>
       </a>
     </div>
@@ -55,6 +50,7 @@
         src="/assets/bed.png"
         alt="Game Panda Bed"
         class="island-element bed"
+        data-sound="click"
       />
       <div id="bedPopup" class="popup-message">
         Click me! Here you can rest.
@@ -65,12 +61,14 @@
         alt="Game Panda"
         class="island-element panda"
         id="panda"
+        data-sound="panda"
       />
 
       <img
         src="/assets/wardrobe.png"
         alt="Game Panda Wardrobe"
         class="island-element wardrobe"
+        data-sound="click"
       />
       <div id="wardrobePopup" class="popup-message">
         Click me! Here you can change clothes.
@@ -111,6 +109,15 @@
         <button id="closeWardrobeBtn">Close</button>
       </div>
     </div>
+    <audio id="bgmAudio" src="/assets/music/home.mp3" preload="auto"></audio>
+    <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
+    <audio id="pandaSound" src="/assets/music/panda.mp3" preload="auto"></audio>
+    <script src="/scripts/sound-manager.js"></script>
     <script src="/scripts/resource-manager.js"></script>
+    <script src="/scripts/sleeping-panda.js"></script>
+    <script src="/scripts/wardrobe-panda.js"></script>
+    <script src="/scripts/panda-animation.js"></script>
+    <script src="/scripts/elements-animation.js"></script>
   </body>
 </html>
