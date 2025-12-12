@@ -195,8 +195,19 @@
   transform: translateY(-5px) scale(1.05);
 }
 
+.island-element-static {
+  position: absolute;
+}
+
 .house {
-  max-width: 55vw;
+  max-width: 65vw;
+  bottom: 10vh;
+  left: 0;
+  z-index: 0;
+}
+
+.tree {
+  max-width: 25vw;
   bottom: 10vh;
   left: 0;
   z-index: 5;
@@ -220,8 +231,8 @@
 }
 
 .bridge {
-  max-width: 30vw;
-  bottom: 5vh;
+  max-width: 15vw;
+  bottom: 20vh;
   right: 0;
   z-index: 7;
 }
