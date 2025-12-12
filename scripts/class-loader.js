@@ -44,10 +44,19 @@ function checkCanPlay() {
   const energy = typeof getEnergy === "function" ? getEnergy() : 10;
   const health = typeof getHealth === "function" ? getHealth() : 5;
 
+  // Case 1: both are 0
+  if (health <= 0 && energy <= 0) {
+    showGameOver("both");
+    return false;
+  }
+
+  // Case 2: only hearts are gone
   if (health <= 0) {
     showGameOver("health");
     return false;
   }
+
+  // Case 3: only energy is gone
   if (energy <= 0) {
     showGameOver("energy");
     return false;
@@ -59,29 +68,53 @@ function checkCanPlay() {
 function showGameOver(reason) {
   const container = document.getElementById("classContainer");
 
-  if (reason === "health") {
-    container.innerHTML = `
-      <div class="game-over">
-        <h2>💔 Game Over</h2>
-        <p>You ran out of health.</p>
-        <p>Go home and sleep to restore your happiness!</p>
-        <button class="check-btn" onclick="window.location.href='/main-pages/start-menu.html'">
-          Back to Home
-        </button>
-      </div>
-    `;
-  } else {
-    container.innerHTML = `
-      <div class="game-over">
-        <h2>⚡ No Energy</h2>
-        <p>You ran out of energy.</p>
-        <p>Go home and sleep to restore your energy!</p>
-        <button class="check-btn" onclick="window.location.href='/main-pages/levels/level${CURRENT_LEVEL}.html'">
-          Back to Level
-        </button>
-      </div>
-    `;
+  if (!container) {
+    console.error("❌ classContainer not found in DOM");
+    return;
   }
+
+  // Choose message depending on reason
+  let title = "";
+  let message = "";
+  let buttonText = "";
+  let buttonLink = "";
+
+  switch (reason) {
+    case "health":
+      title = "💔 No Hearts";
+      message =
+        "You ran out of hearts.<br>Go home and sleep to restore your happiness!";
+      buttonText = "Back to Home";
+      buttonLink = "/main-pages/start-menu.html";
+      break;
+
+    case "energy":
+      title = "⚡ No Energy";
+      message =
+        "You ran out of energy.<br>Go home and sleep to restore your energy!";
+      buttonText = "Back to Level";
+      buttonLink = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
+      break;
+
+    case "both":
+    default:
+      title = "⚡ No Energy and 💔 No Hearts";
+      message =
+        "You ran out of energy and hearts.<br>Go home and sleep to restore everything!";
+      buttonText = "Back to Level";
+      buttonLink = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
+      break;
+  }
+
+  container.innerHTML = `
+    <div class="game-over">
+      <h2>${title}</h2>
+      <p>${message}</p>
+      <button class="check-btn" onclick="window.location.href='${buttonLink}'">
+        ${buttonText}
+      </button>
+    </div>
+  `;
 }
 
 function getNextButtonText() {
