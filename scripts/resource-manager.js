@@ -93,7 +93,8 @@ function updateResourceDisplay() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// Wait for top bar to be loaded
+document.addEventListener("topbar-loaded", () => {
   if (localStorage.getItem("energy") === null) {
     localStorage.setItem("energy", DEFAULT_ENERGY);
   }

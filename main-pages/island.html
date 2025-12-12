@@ -12,40 +12,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-
-    <script src="/scripts/panda-animation.js"></script>
-    <script src="/scripts/elements-animation.js"></script>
   </head>
 
   <body class="island-img">
-    <div class="top-bar">
-      <a
-        href="/main-pages/start-menu.html"
-        class="bar-button"
-        data-sound="icon"
-      >
-        <i class="fa-solid fa-house"></i>
-      </a>
-      <div class="resource-container">
-        <div class="resource-item">
-          <span class="resource-icon">⚡️</span>
-          <span id="energyDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">❤️</span>
-          <span id="healthDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">💰</span>
-          <span id="moneyDisplay">0</span>
-        </div>
-      </div>
+    <!-- TOP BAR  -->
+    <div id="topBar"></div>
 
-      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">
-        <i class="fa-solid fa-user"></i>
-      </a>
-    </div>
-
+    <!-- REST OF THE PAGE -->
     <div class="main-board">
       <a href="/main-pages/house.html" data-sound="click">
         <img
@@ -87,6 +60,8 @@
         class="island-element-static sign"
       />
     </div>
+
+    <!-- OTHER IMPORTS -->
     <audio id="bgmAudio" src="/assets/music/home.mp3" preload="auto"></audio>
     <audio
       id="clickSound"
@@ -95,7 +70,10 @@
     ></audio>
     <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
     <audio id="pandaSound" src="/assets/music/panda.mp3" preload="auto"></audio>
-    <script src="/scripts/sound-manager.js"></script>
+    <script src="/scripts/top-bar-loader.js"></script>
     <script src="/scripts/resource-manager.js"></script>
+    <script src="/scripts/sound-manager.js"></script>
+    <script src="/scripts/panda-animation.js"></script>
+    <script src="/scripts/elements-animation.js"></script>
   </body>
 </html>

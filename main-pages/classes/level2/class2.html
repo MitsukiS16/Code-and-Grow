@@ -13,53 +13,20 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
   </head>
 
   <body class="water-img">
-    <div class="top-bar">
-      <div>
-        <a
-          href="/main-pages/start-menu.html"
-          class="bar-button"
-          data-sound="icon"
-        >
-          <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="/main-pages/island.html" class="bar-button" data-sound="icon">
-          <i class="fa-solid fa-umbrella-beach"></i>
-        </a>
-        <a
-          href="/main-pages/levels/level2.html"
-          class="bar-button"
-          data-sound="icon"
-        >
-          <i class="fa-solid fa-arrow-left"></i>
-        </a>
-      </div>
+   <!-- TOP BAR  -->
+    <div id="topBar"></div>
 
-      <div class="resource-container">
-        <div class="resource-item">
-          <span class="resource-icon">⚡️</span>
-          <span id="energyDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">❤️</span>
-          <span id="healthDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">💰</span>
-          <span id="moneyDisplay">0</span>
-        </div>
-      </div>
-
-      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon"
-        >Perfil</a
-      >
+    <!-- REST OF THE PAGE -->
     </div>
     <div class="blackboard" id="classContainer">
       <div class="loading">Loading...</div>
     </div>
 
+    <!-- OTHER IMPORTS -->
     <script>
       const CURRENT_LEVEL = 2;
       const CURRENT_CLASS = 2;
@@ -67,6 +34,7 @@
     <audio id="rightSound" src="/assets/music/right.mp3" preload="auto"></audio>
     <audio id="wrongSound" src="/assets/music/wrong.mp3" preload="auto"></audio>
     <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
+    <script src="/scripts/top-bar-loader.js"></script>
     <script src="/scripts/resource-manager.js"></script>
     <script src="/scripts/class-loader.js"></script>
   </body>

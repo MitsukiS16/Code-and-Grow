@@ -15,43 +15,10 @@
   </head>
 
   <body class="water-img">
-    <div class="top-bar">
-      <div>
-        <a
-          href="/main-pages/start-menu.html"
-          class="bar-button"
-          data-sound="icon"
-        >
-          <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="/main-pages/island.html" class="bar-button" data-sound="icon">
-          <i class="fa-solid fa-umbrella-beach"></i>
-        </a>
-        <a href="/main-pages/levels.html" class="bar-button" data-sound="icon">
-          <i class="fa-solid fa-arrow-left"></i>
-        </a>
-      </div>
+    <!-- TOP BAR  -->
+    <div id="topBar"></div>
 
-      <div class="resource-container">
-        <div class="resource-item">
-          <span class="resource-icon">⚡️</span>
-          <span id="energyDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">❤️</span>
-          <span id="healthDisplay">10/10</span>
-        </div>
-        <div class="resource-item">
-          <span class="resource-icon">💰</span>
-          <span id="moneyDisplay">0</span>
-        </div>
-      </div>
-
-      <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">
-        <i class="fa-solid fa-user"></i>
-      </a>
-    </div>
-
+    <!-- REST OF THE PAGE -->
     <div class="level-header">
       <h1>Level 2 - Debugging</h1>
       <!-- <p>Identify and correct logical or syntactic errors</p> -->
@@ -81,6 +48,7 @@
       >
     </div>
 
+    <!-- OTHER IMPORTS -->
     <script>
       const CURRENT_LEVEL = 2;
     </script>
@@ -90,6 +58,7 @@
       src="/assets/music/button.mp3"
       preload="auto"
     ></audio>
+    <script src="/scripts/top-bar-loader.js"></script>
     <script src="/scripts/resource-manager.js"></script>
     <script src="/scripts/level-loader.js"></script>
     <script src="/scripts/sound-manager.js"></script>
