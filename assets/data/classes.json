@@ -29,12 +29,12 @@
         "questionType": "click_options_multiple",
         "question": "Select which data types exist in Python:",
         "options": [
-          {"text": "str", "isCorrect": true},
-          {"text": "float", "isCorrect": true},
-          {"text": "integer", "isCorrect": false},
-          {"text": "set", "isCorrect": true},
-          {"text": "string", "isCorrect": false},
-          {"text": "boolean", "isCorrect": true}
+          { "text": "str", "isCorrect": true },
+          { "text": "float", "isCorrect": true },
+          { "text": "integer", "isCorrect": false },
+          { "text": "set", "isCorrect": true },
+          { "text": "string", "isCorrect": false },
+          { "text": "boolean", "isCorrect": true }
         ],
         "explanation": "In Python, the correct type names are: str (not string), int (not integer), float, bool/boolean, set, list, dict, tuple."
       }
@@ -64,8 +64,8 @@
         "question": "The following code will run without errors:",
         "codeExample": "def greet():\nprint('Hello')",
         "options": [
-          {"text": "True", "isCorrect": false},
-          {"text": "False", "isCorrect": true}
+          { "text": "True", "isCorrect": false },
+          { "text": "False", "isCorrect": true }
         ],
         "correctAnswer": false,
         "explanation": "Python requires proper indentation. The print statement must be indented inside the function."
@@ -76,8 +76,8 @@
         "question": "Fix the loop to print numbers 1 to 5:",
         "codeTemplate": "for i in range(___, ___):\n    print(i)",
         "blanks": [
-          {"id": 1, "correctAnswer": "1"},
-          {"id": 2, "correctAnswer": "6"}
+          { "id": 1, "correctAnswer": "1" },
+          { "id": 2, "correctAnswer": "6" }
         ],
         "explanation": "range(1, 6) generates numbers 1, 2, 3, 4, 5. The end value is exclusive."
       }
@@ -92,8 +92,14 @@
         "questionType": "drag_drop",
         "question": "Drag the expressions below to the correct output category:",
         "items": [
-          {"expression": "[x*2 for x in range(4)]", "correctCategory": "Number"},
-          {"expression": "[w.upper() for w in ['a','b','c']]", "correctCategory": "String"}
+          {
+            "expression": "[x*2 for x in range(4)]",
+            "correctCategory": "Number"
+          },
+          {
+            "expression": "[w.upper() for w in ['a','b','c']]",
+            "correctCategory": "String"
+          }
         ],
         "categories": ["Number", "String"],
         "explanation": "List comprehensions provide a concise way to create lists."
@@ -104,8 +110,16 @@
         "question": "Complete the Python function below by selecting the correct term for each blank:",
         "codeTemplate": "def check_key_exists(user_dict, key_name):\n    if key_name _1_ user_dict:\n        return True\n    else:\n        return _2_",
         "blanks": [
-          {"id": 1, "options": ["in", "of", "from", "at"], "correctAnswer": "in"},
-          {"id": 2, "options": ["True", "False", "None", "0"], "correctAnswer": "False"}
+          {
+            "id": 1,
+            "options": ["in", "of", "from", "at"],
+            "correctAnswer": "in"
+          },
+          {
+            "id": 2,
+            "options": ["True", "False", "None", "0"],
+            "correctAnswer": "False"
+          }
         ],
         "explanation": "The 'in' keyword checks if a key exists in a dictionary."
       },
@@ -128,7 +142,7 @@
     }
   },
   "metadata": {
-    "gameName": "Code & Grow",
+    "gameName": "Code & Learn",
     "totalLevels": 3,
     "classesPerLevel": 3,
     "version": "1.0"
