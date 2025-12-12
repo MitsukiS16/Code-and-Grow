@@ -17,7 +17,11 @@
   <body class="water-img">
     <div class="top-bar">
       <div>
-        <a href="/main-pages/start-menu.html" class="bar-button" data-sound="icon">
+        <a
+          href="/main-pages/start-menu.html"
+          class="bar-button"
+          data-sound="icon"
+        >
           <i class="fa-solid fa-house"></i>
         </a>
         <a href="/main-pages/levels.html" class="bar-button" data-sound="icon">
@@ -51,16 +55,38 @@
     </div>
 
     <div class="map-container">
-      <a href="/main-pages/classes/level3/class1.html" class="map-node" data-class="1" data-sound="click">Class 1</a>
-      <a href="/main-pages/classes/level3/class2.html" class="map-node" data-class="2" data-sound="click">Class 2</a>
-      <a href="/main-pages/classes/level3/class3.html" class="map-node" data-class="3" data-sound="click">Class 3</a>
+      <a
+        href="/main-pages/classes/level3/class1.html"
+        class="map-node"
+        data-class="1"
+        data-sound="click"
+        >Class 1</a
+      >
+      <a
+        href="/main-pages/classes/level3/class2.html"
+        class="map-node"
+        data-class="2"
+        data-sound="click"
+        >Class 2</a
+      >
+      <a
+        href="/main-pages/classes/level3/class3.html"
+        class="map-node"
+        data-class="3"
+        data-sound="click"
+        >Class 3</a
+      >
     </div>
 
     <script>
       const CURRENT_LEVEL = 3;
     </script>
     <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
-    <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
+    <audio
+      id="clickSound"
+      src="/assets/music/button.mp3"
+      preload="auto"
+    ></audio>
     <script src="/scripts/resource-manager.js"></script>
     <script src="/scripts/level-loader.js"></script>
     <script src="/scripts/sound-manager.js"></script>

@@ -16,7 +16,11 @@
     <div class="start-screen settings-page">
       <div class="content-container">
         <div class="page-header-row">
-          <a href="/main-pages/start-menu.html" class="back-button" data-sound="icon">
+          <a
+            href="/main-pages/start-menu.html"
+            class="back-button"
+            data-sound="icon"
+          >
             <i class="fa-solid fa-house"></i>
           </a>
 
@@ -43,7 +47,13 @@
           <div class="setting-row">
             <span class="setting-label">Volume</span>
             <div class="volume-slider">
-              <input type="range" id="volumeSlider" min="0" max="100" value="60" />
+              <input
+                type="range"
+                id="volumeSlider"
+                min="0"
+                max="100"
+                value="60"
+              />
               <span class="volume-display" id="volumeDisplay">60%</span>
             </div>
           </div>
@@ -59,8 +69,17 @@
       </div>
     </div>
 
-    <audio id="bgmAudio" src="/assets/music/menu.mp3" preload="auto" loop></audio>
-    <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
+    <audio
+      id="bgmAudio"
+      src="/assets/music/menu.mp3"
+      preload="auto"
+      loop
+    ></audio>
+    <audio
+      id="clickSound"
+      src="/assets/music/button.mp3"
+      preload="auto"
+    ></audio>
     <audio id="iconSound" src="/assets/music/icon.mp3" preload="auto"></audio>
     <script src="/scripts/sound-manager.js"></script>
   </body>
