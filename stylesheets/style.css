@@ -200,8 +200,8 @@
 }
 
 .house {
-  max-width: 65vw;
-  bottom: 10vh;
+  max-width: 55vw;
+  bottom: 13vh;
   left: 0;
   z-index: 0;
 }
@@ -744,7 +744,7 @@ input:checked + .slider:before {
   background: var(--button-base);
   color: var(--button-text);
 
-  max-width: 250px;
+  max-width: 275px;
   width: auto;
   white-space: normal;
 

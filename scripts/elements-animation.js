@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const wardrobe = document.querySelector(".wardrobe");
   const wardrobePopup = document.getElementById("wardrobePopup");
 
+  const panda = document.getElementById("panda");
+  const pandaPopup = document.getElementById("pandaPopup");
+
+  // HOUSE
   if (house && popup) {
     house.addEventListener("mouseenter", () => {
       popup.style.opacity = "1";
@@ -21,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // BRIDGE
   if (bridge && bridgePopup) {
     bridge.addEventListener("mouseenter", () => {
       bridgePopup.style.opacity = "1";
@@ -31,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // BED
   if (bed && bedPopup) {
     bed.addEventListener("mouseenter", () => {
       bedPopup.style.opacity = "1";
@@ -41,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // WARDROBE
   if (wardrobe && wardrobePopup) {
     wardrobe.addEventListener("mouseenter", () => {
       wardrobePopup.style.opacity = "1";
@@ -48,6 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     wardrobe.addEventListener("mouseleave", () => {
       wardrobePopup.style.opacity = "0";
+    });
+  }
+
+  // PANDA
+  if (panda && pandaPopup) {
+    panda.addEventListener("mouseenter", () => {
+      pandaPopup.style.opacity = "1";
+    });
+
+    panda.addEventListener("mouseleave", () => {
+      pandaPopup.style.opacity = "0";
     });
   }
 });
