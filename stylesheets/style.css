@@ -232,7 +232,7 @@
 }
 
 .room-img .panda {
-  max-width: 20vw;
+  max-width: 18vw;
   bottom: 10vh;
   left: 40vw;
 }
@@ -383,64 +383,6 @@
 .map-node:nth-child(even) {
   align-self: flex-end;
   margin-right: 5rem;
-}
-
-/* ===================================================================== */
-/* ============================== BLACKBOARD ============================ */
-/* ===================================================================== */
-
-.blackboard {
-  background-color: #161616;
-  border: 1rem solid #c49b6d;
-  border-radius: 0.5rem;
-
-  max-width: 800px;
-  width: 100%;
-  min-width: 40vw;
-  margin: 2rem auto;
-  padding: 2rem 3rem;
-  overflow: auto;
-  scrollbar-width: none;
-
-  color: #fff;
-  line-height: 1.6;
-
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-  box-sizing: border-box;
-}
-
-.blackboard::-webkit-scrollbar {
-  display: none;
-}
-
-.blackboard h3 {
-  color: var(--chalk-heading);
-  font-size: 1.5rem;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.blackboard p {
-  color: #ccc;
-  font-size: 1.5rem;
-  /* margin-top: 0; */
-}
-
-.motivation-text,
-p {
-  margin-top: 0;
-}
-
-.team-list {
-  margin-top: 1rem;
-}
-
-.team-list p {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  /* color: var(--chalk-text); */
-  font-weight: 500;
 }
 
 /* ===================================================================== */
