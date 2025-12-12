@@ -223,18 +223,9 @@
 .panda {
   height: auto;
   z-index: 10;
-}
-
-.island-img .panda {
   max-width: 20vh;
   bottom: 10vh;
   left: 45vw;
-}
-
-.room-img .panda {
-  max-width: 15vw;
-  bottom: 10vh;
-  left: 40vw;
 }
 
 .bridge {
@@ -245,15 +236,31 @@
 }
 
 .bed {
-  max-width: 40vw;
-  bottom: 5vh;
+  max-width: 35vw;
+  bottom: 6vh;
   left: 5vw;
+  z-index: 15;
 }
 
 .wardrobe {
-  max-width: 30vw;
+  max-width: 22vw;
   bottom: 10vh;
   right: 5vw;
+  z-index: 5;
+}
+
+.chair {
+  max-width: 11vw;
+  bottom: 15vh;
+  right: 30vw;
+  z-index: 0;
+}
+
+.painting {
+  max-width: 25vw;
+  top: 20vh;
+  right: 45vw;
+  z-index: 0;
 }
 
 /* ===================================================================== */
@@ -730,20 +737,24 @@ input:checked + .slider:before {
 
 .popup-message {
   position: absolute;
-  top: 10%;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%);
 
   background: var(--button-base);
   color: var(--button-text);
 
-  padding: 10px 18px;
-  border-radius: 18px;
+  max-width: 250px;
+  width: auto;
+  white-space: normal;
+
+  padding: 10px 14px;
+  border-radius: 16px;
   border: 2px solid var(--button-border);
 
   font-size: 1rem;
   font-weight: 600;
-  white-space: nowrap;
+  text-align: center;
 
   opacity: 0;
   pointer-events: none;
@@ -751,6 +762,20 @@ input:checked + .slider:before {
 
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
   transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.popup-message::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 12px 10px 0 10px;
+  border-style: solid;
+  border-color: var(--button-base) transparent transparent transparent;
+  display: block;
+  width: 0;
+  height: 0;
 }
 
 /* ===================================================================== */
