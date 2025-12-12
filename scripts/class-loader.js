@@ -100,7 +100,7 @@ function showGameOver(reason) {
     default:
       title = "⚡ No Energy and 💔 No Hearts";
       message =
-        "You ran out of energy and hearts.<br>Go home and sleep to restore everything!";
+        "You ran out of energy and hearts.<br>Go home and sleep to restore them!";
       buttonText = "Back to Level";
       buttonLink = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
       break;
