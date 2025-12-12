@@ -213,6 +213,13 @@
   z-index: 5;
 }
 
+.sign {
+  max-width: 10vw;
+  bottom: 25vh;
+  right: 18vw;
+  z-index: 10;
+}
+
 .panda {
   height: auto;
   z-index: 10;
