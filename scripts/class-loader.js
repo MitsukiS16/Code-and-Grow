@@ -64,7 +64,7 @@ function showGameOver(reason) {
       <div class="game-over">
         <h2>💔 Game Over</h2>
         <p>You ran out of health.</p>
-        <p>Go home and sleep to restore your energy!</p>
+        <p>Go home and sleep to restore your happiness!</p>
         <button class="check-btn" onclick="window.location.href='/main-pages/start-menu.html'">
           Back to Home
         </button>
