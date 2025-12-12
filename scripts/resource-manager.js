@@ -1,38 +1,38 @@
-const DEFAULT_ENERGY = 10;
-const DEFAULT_HEALTH = 10;
-const DEFAULT_MONEY = 50;
+const DEFAULT_ENERGY = 5;
+const DEFAULT_HEALTH = 5;
+const DEFAULT_MONEY = 0;
 
 const MONEY_REWARDS = {
-  1: { base: 10, perClass: 2 },   // Level 1: 10 + class * 2
-  2: { base: 20, perClass: 3 },   // Level 2: 20 + class * 3
-  3: { base: 30, perClass: 5 }    // Level 3: 30 + class * 5
+  1: { base: 10, perClass: 2 }, // Level 1: 10 + class * 2
+  2: { base: 20, perClass: 3 }, // Level 2: 20 + class * 3
+  3: { base: 30, perClass: 5 }, // Level 3: 30 + class * 5
 };
 
 function getEnergy() {
-  return parseInt(localStorage.getItem('energy') ?? DEFAULT_ENERGY);
+  return parseInt(localStorage.getItem("energy") ?? DEFAULT_ENERGY);
 }
 function getHealth() {
-  return parseInt(localStorage.getItem('health') ?? DEFAULT_HEALTH);
+  return parseInt(localStorage.getItem("health") ?? DEFAULT_HEALTH);
 }
 function getMoney() {
-  return parseInt(localStorage.getItem('money') ?? DEFAULT_MONEY);
+  return parseInt(localStorage.getItem("money") ?? DEFAULT_MONEY);
 }
 
 function setEnergy(value) {
-  const newValue = Math.max(0, Math.min(10, value));
-  localStorage.setItem('energy', newValue);
+  const newValue = Math.max(0, Math.min(5, value));
+  localStorage.setItem("energy", newValue);
   updateResourceDisplay();
   return newValue;
 }
 function setHealth(value) {
-  const newValue = Math.max(0, Math.min(10, value));
-  localStorage.setItem('health', newValue);
+  const newValue = Math.max(0, Math.min(5, value));
+  localStorage.setItem("health", newValue);
   updateResourceDisplay();
   return newValue;
 }
 function setMoney(value) {
   const newValue = Math.max(0, value);
-  localStorage.setItem('money', newValue);
+  localStorage.setItem("money", newValue);
   updateResourceDisplay();
   return newValue;
 }
@@ -57,7 +57,7 @@ function loseHealth() {
 
 function gainMoney(level, classNum) {
   const reward = MONEY_REWARDS[level] || { base: 10, perClass: 2 };
-  const amount = reward.base + (classNum * reward.perClass);
+  const amount = reward.base + classNum * reward.perClass;
   const current = getMoney();
   setMoney(current + amount);
   return amount;
@@ -78,37 +78,37 @@ function gainMoney(level, classNum) {
 // }
 
 function updateResourceDisplay() {
-  const energyDisplay = document.getElementById('energyDisplay');
-  const healthDisplay = document.getElementById('healthDisplay');
-  const moneyDisplay = document.getElementById('moneyDisplay');
-  
+  const energyDisplay = document.getElementById("energyDisplay");
+  const healthDisplay = document.getElementById("healthDisplay");
+  const moneyDisplay = document.getElementById("moneyDisplay");
+
   if (energyDisplay) {
-    energyDisplay.textContent = `${getEnergy()}/10`;
+    energyDisplay.textContent = `${getEnergy()}/5`;
   }
   if (healthDisplay) {
-    healthDisplay.textContent = `${getHealth()}/10`;
+    healthDisplay.textContent = `${getHealth()}/5`;
   }
   if (moneyDisplay) {
     moneyDisplay.textContent = getMoney();
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (localStorage.getItem('energy') === null) {
-    localStorage.setItem('energy', DEFAULT_ENERGY);
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("energy") === null) {
+    localStorage.setItem("energy", DEFAULT_ENERGY);
   }
-  if (localStorage.getItem('health') === null) {
-    localStorage.setItem('health', DEFAULT_HEALTH);
+  if (localStorage.getItem("health") === null) {
+    localStorage.setItem("health", DEFAULT_HEALTH);
   }
-  if (localStorage.getItem('money') === null) {
-    localStorage.setItem('money', DEFAULT_MONEY);
+  if (localStorage.getItem("money") === null) {
+    localStorage.setItem("money", DEFAULT_MONEY);
   }
-  
+
   updateResourceDisplay();
 });
 
 // after sleep
 function fullRestore() {
-  setEnergy(10);
-  setHealth(10);
+  setEnergy(5);
+  setHealth(5);
 }

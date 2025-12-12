@@ -41,8 +41,8 @@ async function loadClassData() {
 }
 
 function checkCanPlay() {
-  const energy = typeof getEnergy === 'function' ? getEnergy() : 10;
-  const health = typeof getHealth === 'function' ? getHealth() : 10;
+  const energy = typeof getEnergy === 'function' ? getEnergy() : 5;
+  const health = typeof getHealth === 'function' ? getHealth() : 5;
   
   if (health <= 0) {
     showGameOver('health');
