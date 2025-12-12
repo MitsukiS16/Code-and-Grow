@@ -49,6 +49,9 @@
   --ui-dark-2: #3a3a3a;
   --ui-dark-3: #4a4a4a;
 
+  --navbar-bg: rgba(255, 255, 255, 0.3);
+  --navbar-shadow: rgba(255, 255, 255, 0.2);
+
   --font-primary: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
