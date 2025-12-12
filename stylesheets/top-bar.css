@@ -59,3 +59,54 @@
   font-size: 1.5rem;
   color: var(--accent-teal);
 }
+
+/* ANIMATION FOR CHANGES  */
+.resource-change-gain {
+  animation: popUp 0.5s ease;
+}
+
+.resource-change-loss {
+  animation: shakeRed 0.5s ease;
+}
+
+@keyframes popUp {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+    color: #4caf50;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    color: #4caf50;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    color: inherit;
+  } /* revert to normal */
+}
+
+@keyframes shakeRed {
+  0%,
+  100% {
+    transform: translateX(0);
+    color: inherit;
+  }
+  20% {
+    transform: translateX(-5px);
+    color: #f44336;
+  }
+  40% {
+    transform: translateX(5px);
+    color: #f44336;
+  }
+  60% {
+    transform: translateX(-5px);
+    color: #f44336;
+  }
+  80% {
+    transform: translateX(5px);
+    color: #f44336;
+  }
+}

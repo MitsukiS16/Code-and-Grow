@@ -1,4 +1,4 @@
-const DEFAULT_ENERGY = 5;
+const DEFAULT_ENERGY = 10;
 const DEFAULT_HEALTH = 5;
 const DEFAULT_MONEY = 0;
 
@@ -19,7 +19,7 @@ function getMoney() {
 }
 
 function setEnergy(value) {
-  const newValue = Math.max(0, Math.min(5, value));
+  const newValue = Math.max(0, Math.min(10, value));
   localStorage.setItem("energy", newValue);
   updateResourceDisplay();
   return newValue;
@@ -83,7 +83,7 @@ function updateResourceDisplay() {
   const moneyDisplay = document.getElementById("moneyDisplay");
 
   if (energyDisplay) {
-    energyDisplay.textContent = `${getEnergy()}/5`;
+    energyDisplay.textContent = `${getEnergy()}/10`;
   }
   if (healthDisplay) {
     healthDisplay.textContent = `${getHealth()}/5`;
@@ -110,6 +110,47 @@ document.addEventListener("topbar-loaded", () => {
 
 // after sleep
 function fullRestore() {
-  setEnergy(5);
+  setEnergy(10);
   setHealth(5);
+}
+
+function animateResourceChange(element, type = "gain") {
+  if (!element) return;
+  element.classList.remove("resource-change-gain", "resource-change-loss");
+  void element.offsetWidth; // trigger reflow to restart animation
+  element.classList.add(
+    type === "gain" ? "resource-change-gain" : "resource-change-loss"
+  );
+}
+
+function updateResourceDisplay() {
+  const energyDisplay = document.getElementById("energyDisplay");
+  const healthDisplay = document.getElementById("healthDisplay");
+  const moneyDisplay = document.getElementById("moneyDisplay");
+
+  if (energyDisplay) {
+    const oldEnergy = parseInt(energyDisplay.textContent) || 0;
+    const newEnergy = getEnergy();
+    energyDisplay.textContent = `${newEnergy}/10`;
+    if (newEnergy < oldEnergy) animateResourceChange(energyDisplay, "loss");
+    else if (newEnergy > oldEnergy)
+      animateResourceChange(energyDisplay, "gain");
+  }
+
+  if (healthDisplay) {
+    const oldHealth = parseInt(healthDisplay.textContent) || 0;
+    const newHealth = getHealth();
+    healthDisplay.textContent = `${newHealth}/5`;
+    if (newHealth < oldHealth) animateResourceChange(healthDisplay, "loss");
+    else if (newHealth > oldHealth)
+      animateResourceChange(healthDisplay, "gain");
+  }
+
+  if (moneyDisplay) {
+    const oldMoney = parseInt(moneyDisplay.textContent) || 0;
+    const newMoney = getMoney();
+    moneyDisplay.textContent = newMoney;
+    if (newMoney < oldMoney) animateResourceChange(moneyDisplay, "loss");
+    else if (newMoney > oldMoney) animateResourceChange(moneyDisplay, "gain");
+  }
 }
