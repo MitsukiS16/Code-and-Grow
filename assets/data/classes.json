@@ -6,7 +6,7 @@
       "class1": {
         "className": "Variables",
         "questionType": "click_options",
-        "question": "What's wrong with this variable name: my name",
+        "question": "What's wrong with this variable name: <code>my name</code>",
         "options": [
           "It contains a lowercase letter",
           "There's a space between the words",

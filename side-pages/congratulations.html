@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code & Learn - Congratulations!</title>
+    <link rel="stylesheet" href="/stylesheets/body.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Confetti -->
+    <div id="confetti-container"></div>
+    <div class="congrats-container">
+      <div class="congrats-content">
+        <div class="congrats-left">
+          <h1 class="congrats-title">Congratulations🎊</h1>
+          <p class="congrats-message">
+            Amazing work! You've completed all levels and mastered the basics of Python!<br>
+            Your panda is so proud of you! 🐼✨
+          </p>
+
+            <div class="congrats-stats">
+              <div class="stat-box">
+                <h3>3</h3>
+                <p>Levels Completed</p>
+              </div>
+              <div class="stat-box">
+                <h3>9</h3>
+                <p>Classes Finished</p>
+              </div>
+              <div class="stat-box">
+                <h3 id="totalCoins">0</h3>
+                <p>Coins Earned</p>
+            </div>
+            </div>
+            <div class="congrats-buttons">
+                <a href="/main-pages/start-menu.html" class="menu-button" data-sound="click">
+                <i class="fa-solid fa-house"></i> Home
+                </a>
+                <a href="/main-pages/levels.html" class="menu-button" data-sound="click">
+                <i class="fa-solid fa-rotate"></i> Play Again
+                </a>
+            </div>
+        </div>
+
+        <div class="congrats-right">
+          <img src="/assets/panda-young.png" alt="Happy Panda" class="panda-congrats"/>
+        </div>
+      </div>
+
+
+    </div>
+
+    <audio id="bgmAudio" src="/assets/music/menu.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="/assets/music/button.mp3" preload="auto"></audio>
+    <script src="/scripts/sound-manager.js"></script>
+    <script src="/scripts/congrats-loader.js"></script>
+  </body>
+</html>

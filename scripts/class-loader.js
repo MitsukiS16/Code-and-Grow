@@ -316,8 +316,8 @@ function renderFillBlank(container) {
 
 function checkFillBlank() {
   const input = document.getElementById("fillInput");
-  const userAnswer = input.value.trim().toLowerCase();
-  const correctAnswer = classData.correctAnswer.toLowerCase();
+  const userAnswer = input.value.trim();
+  const correctAnswer = classData.correctAnswer;
   const isCorrect = userAnswer === correctAnswer;
 
   input.disabled = true;
@@ -757,6 +757,9 @@ function showResult(isCorrect) {
 }
 
 function retry() {
+  if (!checkCanPlay()) {
+    return;
+  }
   renderQuestion();
 }
 
@@ -776,7 +779,7 @@ function goNext() {
   if (CURRENT_CLASS < totalClasses) {
     window.location.href = `class${CURRENT_CLASS + 1}.html`;
   } else if (CURRENT_LEVEL >= TOTAL_LEVELS) {
-    window.location.href = `/main-pages/levels/level${CURRENT_LEVEL}.html`;
+    window.location.href = `/side-pages/congratulations.html`;
   } else {
     window.location.href = `/main-pages/levels/level${CURRENT_LEVEL + 1}.html`;
   }

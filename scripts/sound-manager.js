@@ -198,10 +198,16 @@ function initSettingsPage() {
   }
 }
 
+// initialize
 document.addEventListener("DOMContentLoaded", function () {
   initBgm();
   initSoundButtons();
   initSettingsPage();
+});
+
+// rebind after top bar load
+document.addEventListener('topbar-loaded', function() {
+  initSoundButtons();
 });
 
 window.addEventListener("beforeunload", saveBgmPosition);
