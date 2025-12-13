@@ -7,6 +7,7 @@
         "className": "Variables",
         "questionType": "click_options",
         "question": "What's wrong with this variable name: <code>my name</code>",
+        "hint": "Variable names cannot contain spaces. Use underscore _ instead.",
         "options": [
           "It contains a lowercase letter",
           "There's a space between the words",
@@ -20,6 +21,7 @@
         "className": "Print Function",
         "questionType": "fill_blank",
         "question": "Complete the code to print 'Hello World':",
+        "hint": "The function name starts with 'p' and has 5 letters.",
         "codeTemplate": "___('Hello World')",
         "correctAnswer": "print",
         "explanation": "The print() function is used to output text in Python."
@@ -28,6 +30,7 @@
         "className": "Data Types",
         "questionType": "click_options_multiple",
         "question": "Select which data types exist in Python:",
+        "hint": "Numbers with decimal points are called 'float' in Python.",
         "options": [
           { "text": "str", "isCorrect": true },
           { "text": "float", "isCorrect": true },
@@ -48,6 +51,7 @@
         "className": "Syntax Errors",
         "questionType": "click_options",
         "question": "What is wrong with this code?",
+        "hint": "Look for missing colons (:) or mismatched quotes.",
         "codeExample": "if x == 5\n    print('Five')",
         "options": [
           "Missing colon after the condition",
@@ -62,6 +66,7 @@
         "className": "Indentation",
         "questionType": "true_false",
         "question": "The following code will run without errors:",
+        "hint": "Code inside a function must be indented with 4 spaces.",
         "codeExample": "def greet():\nprint('Hello')",
         "options": [
           { "text": "True", "isCorrect": false },
@@ -74,6 +79,7 @@
         "className": "Logic Errors",
         "questionType": "fill_blank_multiple",
         "question": "Fix the loop to print numbers 1 to 5:",
+        "hint": "range(start, stop) - the stop value is NOT included.",
         "codeTemplate": "for i in range(___, ___):\n    print(i)",
         "blanks": [
           { "id": 1, "correctAnswer": "1" },
@@ -91,6 +97,7 @@
         "className": "List Comprehensions",
         "questionType": "drag_drop",
         "question": "Drag the expressions below to the correct output category:",
+        "hint": "List comprehension syntax: [expression for item in iterable]",
         "items": [
           {
             "expression": "[x*2 for x in range(4)]",
@@ -108,6 +115,7 @@
         "className": "Dictionaries",
         "questionType": "dropdown",
         "question": "Complete the Python function below by selecting the correct term for each blank:",
+        "hint": "Use 'in' keyword to check if a key exists in a dictionary.",
         "codeTemplate": "def check_key_exists(user_dict, key_name):\n    if key_name _1_ user_dict:\n        return True\n    else:\n        return _2_",
         "blanks": [
           {
@@ -127,6 +135,7 @@
         "className": "Create a Function",
         "questionType": "sort_options",
         "question": "Place the following steps in the correct order to sort the numbers list from largest to smallest and print the result:",
+        "hint": "Use reverse=True parameter to sort in descending order.",
         "options": [
           "print(numbers)",
           "numbers.sort(reverse=True)",

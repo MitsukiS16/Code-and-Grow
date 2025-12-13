@@ -1,5 +1,6 @@
 /* ========== BLACKBOARD ========== */
 .blackboard {
+  position: relative;
   background: var(--blackboard-bg);
   border: 1rem solid var(--blackboard-border);
   border-radius: 15px;
@@ -435,10 +436,69 @@
 
 /* ========== CLASS CONTENT ========== */
 .question-text code {
-  background: #1e1e1e;
+  background: var(--ui-dark-1);
   color: #9cdcfe;
   padding: 2px 8px;
   border-radius: 4px;
   font-family: 'Consolas', 'Monaco', monospace;
   font-size: 0.95em;
+}
+
+/* ============ Hint Button ============ */
+.hint-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--button-base);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--button-text);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background 0.2s;
+  z-index: 10;
+}
+
+.hint-btn:hover {
+  transform: scale(1.1);
+  background: var(--button-hover);
+}
+
+.hint-popup {
+  position: absolute;
+  top: 65px;
+  right: 15px;
+  background: var(--button-base);
+  color: var(--ui-dark-1);
+  padding: 15px 20px;
+  border-radius: 10px;
+  max-width: 280px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+
+.hint-popup::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  border-width: 0 10px 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--button-base) transparent;
+}
+
+.hint-popup p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--color-dark-teal);
+  font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }

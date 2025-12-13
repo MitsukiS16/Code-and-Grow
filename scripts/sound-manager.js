@@ -184,15 +184,9 @@ function initSettingsPage() {
   }
 
   if (hintsToggle) {
-    let hintsEnabled = localStorage.getItem("hintsEnabled");
-
-    if (hintsEnabled === null) {
-      hintsEnabled = "true";
-      localStorage.setItem("hintsEnabled", hintsEnabled);
-    }
-
-    hintsToggle.checked = hintsEnabled === "true";
-    hintsToggle.addEventListener("change", function () {
+      const hintsEnabled = localStorage.getItem('hintsEnabled') !== 'false';
+      hintsToggle.checked = hintsEnabled;
+      hintsToggle.addEventListener("change", function () {
       localStorage.setItem("hintsEnabled", this.checked);
     });
   }

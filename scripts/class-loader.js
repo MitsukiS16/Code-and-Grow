@@ -40,6 +40,33 @@ async function loadClassData() {
   }
 }
 
+// ============ Hints 功能 ============
+function isHintsEnabled() {
+  return localStorage.getItem('hintsEnabled') !== 'false';
+}
+
+function renderHintButton() {
+  if (!isHintsEnabled() || !classData.hint) return '';
+  
+  return `
+    <button class="hint-btn" id="hintBtn" onclick="showHint()">
+      <i class="fa-solid fa-puzzle-piece"></i>
+    </button>
+    <div class="hint-popup" id="hintPopup" style="display: none;">
+      <p>${classData.hint}</p>
+    </div>
+  `;
+}
+
+function showHint() {
+  const popup = document.getElementById('hintPopup');
+  if (popup.style.display === 'none') {
+    popup.style.display = 'block';
+  } else {
+    popup.style.display = 'none';
+  }
+}
+
 function checkCanPlay() {
   const energy = typeof getEnergy === "function" ? getEnergy() : 10;
   const health = typeof getHealth === "function" ? getHealth() : 5;
@@ -239,6 +266,7 @@ function renderQuestion() {
 // ============ 单选题 (click_options) ============
 function renderClickOptions(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     ${
@@ -296,6 +324,7 @@ function checkClickOptions() {
 // ============ 填空题 (fill_blank) ============
 function renderFillBlank(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="code-block">
@@ -333,6 +362,7 @@ function checkFillBlank() {
 // ============ 多选题 (click_options_multiple) ============
 function renderMultipleChoice(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="options-container options-grid">
@@ -393,6 +423,7 @@ function checkMultipleChoice() {
 // ============ 判断题 (true_false) ============
 function renderTrueFalse(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     ${
@@ -450,6 +481,7 @@ function checkTrueFalse() {
 // ============ 多空填空题 (fill_blank_multiple) ============
 function renderFillBlankMultiple(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="code-block">
@@ -488,6 +520,7 @@ function checkFillBlankMultiple() {
 // ============ 拖拽题 (drag_drop) ============
 function renderDragDrop(container) {
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="drag-container">
@@ -588,6 +621,7 @@ function renderDropdown(container) {
   });
 
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="code-block"><pre>${codeHtml}</pre></div>
@@ -623,6 +657,7 @@ function renderSortOptions(container) {
   const shuffled = [...classData.options].sort(() => Math.random() - 0.5);
 
   container.innerHTML = `
+    ${renderHintButton()}
     <h2>Class ${CURRENT_CLASS} - ${classData.className}</h2>
     <p class="question-text">${classData.question}</p>
     <div class="sort-container" id="sortContainer">
