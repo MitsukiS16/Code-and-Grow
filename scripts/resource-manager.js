@@ -63,51 +63,6 @@ function gainMoney(level, classNum) {
   return amount;
 }
 
-// not used currently
-// function restoreEnergy(amount = 10) {
-//   setEnergy(getEnergy() + amount);
-// }
-// function restoreHealth(amount = 10) {
-//   setHealth(getHealth() + amount);
-// }
-// function resetAllResources() {
-//   localStorage.setItem('energy', DEFAULT_ENERGY);
-//   localStorage.setItem('health', DEFAULT_HEALTH);
-//   localStorage.setItem('money', DEFAULT_MONEY);
-//   updateResourceDisplay();
-// }
-
-function updateResourceDisplay() {
-  const energyDisplay = document.getElementById("energyDisplay");
-  const healthDisplay = document.getElementById("healthDisplay");
-  const moneyDisplay = document.getElementById("moneyDisplay");
-
-  if (energyDisplay) {
-    energyDisplay.textContent = `${getEnergy()}/10`;
-  }
-  if (healthDisplay) {
-    healthDisplay.textContent = `${getHealth()}/5`;
-  }
-  if (moneyDisplay) {
-    moneyDisplay.textContent = getMoney();
-  }
-}
-
-// Wait for top bar to be loaded
-document.addEventListener("topbar-loaded", () => {
-  if (localStorage.getItem("energy") === null) {
-    localStorage.setItem("energy", DEFAULT_ENERGY);
-  }
-  if (localStorage.getItem("health") === null) {
-    localStorage.setItem("health", DEFAULT_HEALTH);
-  }
-  if (localStorage.getItem("money") === null) {
-    localStorage.setItem("money", DEFAULT_MONEY);
-  }
-
-  updateResourceDisplay();
-});
-
 // after sleep
 function fullRestore() {
   setEnergy(10);
@@ -121,6 +76,24 @@ function animateResourceChange(element, type = "gain") {
   element.classList.add(
     type === "gain" ? "resource-change-gain" : "resource-change-loss"
   );
+}
+
+function updatePandaImage() {
+  const panda = document.getElementById('panda');
+  if (!panda) return;
+  if (panda.src.includes('sleeping')) return;
+  
+  const energy = getEnergy();
+  const health = getHealth();
+  if (energy <= 2 || health <= 1) {
+    if (!panda.src.includes('panda-sad')) {
+      panda.src = '/assets/panda-sad.png';
+    }
+  } else {
+    if (!panda.src.includes('panda-young')) {
+      panda.src = '/assets/panda-young.png';
+    }
+  }
 }
 
 function updateResourceDisplay() {
@@ -153,4 +126,21 @@ function updateResourceDisplay() {
     if (newMoney < oldMoney) animateResourceChange(moneyDisplay, "loss");
     else if (newMoney > oldMoney) animateResourceChange(moneyDisplay, "gain");
   }
+
+  updatePandaImage();
 }
+
+// Wait for top bar to be loaded
+document.addEventListener("topbar-loaded", () => {
+  if (localStorage.getItem("energy") === null) {
+    localStorage.setItem("energy", DEFAULT_ENERGY);
+  }
+  if (localStorage.getItem("health") === null) {
+    localStorage.setItem("health", DEFAULT_HEALTH);
+  }
+  if (localStorage.getItem("money") === null) {
+    localStorage.setItem("money", DEFAULT_MONEY);
+  }
+
+  updateResourceDisplay();
+});

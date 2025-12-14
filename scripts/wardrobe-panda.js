@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const bed = document.querySelector(".bed");
-  const modal = document.getElementById("sleepModal");
-  const wakeUpBtn = document.getElementById("wakeUpBtn");
-  const panda = document.querySelector(".panda"); // main panda on board
+  const wardrobe = document.querySelector(".wardrobe");
+  const wardrobeModal = document.getElementById("wardrobeModal");
+  const closeWardrobeBtn = document.getElementById("closeWardrobeBtn");
 
-  bed.addEventListener("click", () => {
-    modal.style.display = "flex";
-    wakeUpBtn.style.display = "none";
+  if (wardrobe && wardrobeModal) {
+    wardrobe.addEventListener("click", () => {
+      wardrobeModal.style.display = "flex";
+    });
+  }
 
-    panda.src = "/assets/panda-young-sleeping.png";
+  if (closeWardrobeBtn) {
+    closeWardrobeBtn.addEventListener("click", () => {
+      wardrobeModal.style.display = "none";
+    });
 
-    setTimeout(() => {
-      wakeUpBtn.style.display = "inline-block";
-    }, 5000);
-  });
-
-  wakeUpBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    panda.src = "/assets/panda-young.png";
-  });
+    wardrobeModal.addEventListener("click", (e) => {
+      if (e.target === wardrobeModal) {
+        wardrobeModal.style.display = "none";
+      }
+    });
+  }
 });

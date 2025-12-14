@@ -1,6 +1,3 @@
-// ============ Level页面加载器 ============
-// 在HTML中需要定义: const CURRENT_LEVEL = 1;
-
 const CLASSES_PER_LEVEL = {
   1: 3,
   2: 3,

@@ -40,7 +40,7 @@ async function loadClassData() {
   }
 }
 
-// ============ Hints 功能 ============
+// ============ Hints ============
 function isHintsEnabled() {
   return localStorage.getItem('hintsEnabled') !== 'false';
 }
@@ -59,6 +59,10 @@ function renderHintButton() {
 }
 
 function showHint() {
+  if (typeof playSound === 'function') {
+    playSound('icon');
+  }
+  
   const popup = document.getElementById('hintPopup');
   if (popup.style.display === 'none') {
     popup.style.display = 'block';

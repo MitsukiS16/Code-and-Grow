@@ -27,14 +27,55 @@
   </div>
 
   <div>
-    <a href="/side-pages/settings.html" class="bar-button" data-sound="icon">
+    <button class="bar-button" id="settingsBtn" data-sound="icon">
       <i class="fa-solid fa-gear"></i>
-    </a>
+    </button>
     <a href="/side-pages/perfil.html" class="bar-button" data-sound="icon">
       <i class="fa-solid fa-user"></i>
     </a>
     <a href="/main-pages/start-menu.html" class="bar-button" data-sound="icon">
       <i class="fa-solid fa-right-from-bracket"></i>
     </a>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+  <div class="modal-content settings-modal-content">
+    <h2 class="settings-modal-title">Settings</h2>
+    
+    <div class="setting-row">
+      <span class="setting-label">Background Music</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="bgmToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <span class="setting-label">Sound Effects</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="sfxToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <span class="setting-label">Volume</span>
+      <div class="volume-slider">
+        <input type="range" id="volumeSlider" min="0" max="100" value="60" />
+        <span class="volume-display" id="volumeDisplay">60%</span>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span class="setting-label">Hints & Clues</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="hintsToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <button id="closeSettingsBtn" class="modal-close-btn">Close</button>
   </div>
 </div>

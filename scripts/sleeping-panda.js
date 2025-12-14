@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     panda.style.left = (bedRect.left + bedRect.width * 0.28) + 'px';
     panda.style.top = (bedRect.top + bedRect.height * 0.2) + 'px';
     panda.style.bottom = 'auto';
+    panda.src = "/assets/panda-young-sleeping.png";
   }
 
   function movePandaBack() {
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     panda.style.left = '';
     panda.style.top = '';
     panda.style.bottom = '';
+    panda.src = "/assets/panda-young.png";
   }
 
   window.addEventListener('resize', () => {
@@ -27,26 +29,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  bed.addEventListener("click", () => {
-    isSleeping = true;
-    movePandaToBed();
+  if (bed && modal) {
+    bed.addEventListener("click", () => {
+      isSleeping = true;
+      movePandaToBed();
 
-    modal.style.display = "flex";
-    wakeUpBtn.style.display = "none";
+      modal.style.display = "flex";
+      wakeUpBtn.style.display = "none";
 
-    setTimeout(() => {
-      wakeUpBtn.style.display = "inline-block";
-    }, 5000);
-  });
+      setTimeout(() => {
+        wakeUpBtn.style.display = "inline-block";
+      }, 5000);
+    });
+  }
 
-  wakeUpBtn.addEventListener('click', function() {
-    if (typeof fullRestore === 'function') {
-      fullRestore();
-    }
+  if (wakeUpBtn) {
+    wakeUpBtn.addEventListener('click', function() {
+      if (typeof fullRestore === 'function') {
+        fullRestore();
+      }
 
-    isSleeping = false;
-    movePandaBack();
+      isSleeping = false;
+      movePandaBack();
 
-    modal.style.display = "none";
-  });
+      modal.style.display = "none";
+    });
+  }
 });
