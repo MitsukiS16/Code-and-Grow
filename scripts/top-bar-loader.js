@@ -97,7 +97,6 @@ function bindSettingsControls() {
       localStorage.setItem('hintsEnabled', this.checked);
       const hintBtn = document.getElementById('hintBtn');
       const hintPopup = document.getElementById('hintPopup');
-      
       if (hintBtn) {
         hintBtn.style.display = this.checked ? 'flex' : 'none';
       }
