@@ -1,63 +1,52 @@
-# Code & Grow
+# Code & Grow 🌱🐼
+*A serious game for learning Python through play*
 
-## Overview
+## What it is
+**Code & Grow** is a web-based educational game that introduces Python programming using short, interactive learning sessions. Players take care of a virtual panda whose energy and happiness depend on completing coding challenges, encouraging consistent and low-pressure learning.
 
-Platform: Computer
+This project was developed as part of a **Serious Games (HCI)** course using a user-centered, iterative design approach.
 
-Language: C# (Unity 2D)
+---
 
-Genre: Educational Simulation / Pet Progression
+## Why it matters
+- Makes programming **less intimidating** for beginners
+- Encourages **frequent practice** instead of long study sessions
+- Combines learning with **motivation, feedback, and progression**
+- Designed based on **real user feedback and evaluation**
 
-Art Style: Minimalist 2D cartoon
+---
 
-Title: Code & Grow
+## Key Features
+- 🐼 Virtual pet with emotion & energy system
+- 🎓 Guided learning before each challenge
+- 💡 Contextual hints and on-screen explanations
+- 🧠 Progressive Python content (basics → debugging → logic)
+- 🎮 Rewards, currency, and customization
+- 🎨 Clean UI with animations and sound feedback
 
-|()[]
+---
 
-## Concept
+## Learning Content
+- **Level 1:** Python syntax & keywords
+- **Level 2:** Debugging and code correction
+- **Level 3:** Code completion and logical reasoning
 
-Concept: Code & Grow is a serious game that uses a combination of learning and playing to introduce players to Python programming. Players care for a baby panda, whose growth and happiness depend on them learning and applying coding concepts.
+---
 
-Knowledge acts as the panda’s 'food', with player progress directly linked to the pet’s emotional and physical development. The game promotes consistent, reflective and self-paced learning through positive reinforcement and interactive gameplay.
+## Tech Stack
+- **Frontend:** HTML, CSS, JavaScript
+- **Platform:** Web (Desktop)
+- **Design:** Figma (wireframes & mockups)
 
-## MDA Framework
+---
 
-### Mechanics
+## Status & Next Steps
+- ✔ Functional prototype
+- ✔ User-tested and iterated
+- ⏳ Future work: adaptive difficulty, more content, mobile version
 
-Knowledge System: Three progressive levels introducing Python fundamentals.
+---
 
-- Level 1: Keywords & syntax (click, drag & drop).
-- Level 2: Debugging & correction (multiple choice, fill-in).
-- Level 3: Function writing & logic (short coding tasks).
-
-Sleep & Code Cycle: Cooldowns simulate rest and spaced repetition.
-
-Avatar Progression: Panda evolves from (Baby → Teen → Adult) to represent coding mastery.
-
-Emotion System: Panda mood reflects learning activity (Happy → Sad).
-
-Rewards: XP, outfits, and accessories for milestones.
-
-### Dynamics
-
-Responsibility Loop: The panda’s emotional health motivates players to keep learning.
-
-Feedback Loop: Immediate visual and sound feedback reinforce correct answers.
-
-Flow & Pacing: Short, distributed sessions promote sustainable learning habits.
-
-Progression: Difficulty scales gradually, integrating previously learned concepts.
-
-### Aesthetics
-
-Sensation: Calm pastel visuals and soft background music.
-
-Fantasy: Guide a panda to become a Python teacher.
-
-Narrative: Follow the panda’s journey from student to mentor, fueled by knowledge.
-
-Challenge: Gentle progression ensures engagement without frustration.
-
-Discovery & Expression: Unlock Python topics and customize the panda’s appearance.
-
-Submission: A relaxing loop that builds productive learning habits.
+## Authors
+**Clarisse Carvalho** · **Yongyi Yang**
+University of Paris-Saclay
