@@ -48,5 +48,7 @@ This project was developed as part of a **Serious Games (HCI)** course using a u
 ---
 
 ## Authors
-**Clarisse Carvalho** · **Yongyi Yang**
+
+**Clarisse Carvalho** and **Yongyi Yang**
+
 University of Paris-Saclay
